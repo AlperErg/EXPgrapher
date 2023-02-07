@@ -1,0 +1,153 @@
+ /* The Modal (background) */
+ .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #34495e;
+    margin: 0% auto; /* 15% from the top and centered */
+    padding: 10px;
+    border: 1px solid #34495e;
+    width: 80%; /* Could be more or less, depending on screen size */
+  }
+
+  /* The Close Button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  } 
+
+/*the snackbar styling*/
+/* The snackbar - position it at the bottom and in the middle of the screen */
+  #snackbar {
+    visibility: hidden; /* Hidden by default. Visible on click */
+    min-width: 250px; /* Set a default minimum width */
+    margin-left: -125px; /* Divide value of min-width by 2 */
+    background-color: #333; /* Black background color */
+    color: #fff; /* White text color */
+    text-align: center; /* Centered text */
+    border-radius: 2px; /* Rounded borders */
+    padding: 16px; /* Padding */
+    position: fixed; /* Sit on top of the screen */
+    z-index: 1; /* Add a z-index if needed */
+    left: 50%; /* Center the snackbar */
+    bottom: 30px; /* 30px from the bottom */
+  }
+
+  /* Show the snackbar when clicking on a button (class added with JavaScript) */
+  #snackbar.show {
+    visibility: visible; /* Show the snackbar */
+    /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+    However, delay the fade out process for 2.5 seconds */
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  }
+
+  /* Animations to fade the snackbar in and out */
+  @-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+  }
+
+  @keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+  }
+
+  @-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+  }
+
+  @keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+  } 
+/* Links */
+a {
+  color: #3498db;
+}
+a:hover, a:active {
+  color: #2980b9;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  color: #ffffff;
+}
+
+/* Tables */
+table {
+  background-color: #2c3e50;
+  color: #ffffff;
+  border-color: #34495e;
+}
+
+/* Form elements */
+input[type="text"], input[type="password"], input[type="email"], textarea {
+  background-color: #2c3e50;
+  color: #ffffff;
+  border-color: #34495e;
+}
+input[type="submit"] {
+  background-color: #3498db;
+  color: #ffffff;
+  border-color: #2980b9;
+}
+input[type="submit"]:hover, input[type="submit"]:active {
+  background-color: #2980b9;
+  border-color: #3498db;
+}
+
+/* Code blocks */
+pre, code {
+  background-color: #2c3e50;
+  color: #ffffff;
+  border-color: #34495e;
+}
+header {
+  display: flex;
+  align-items:center;
+  justify-content:space-between;
+  color:#2c3e50;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+/*buttons*/
+button {
+  background-color: #2c3e50;
+  color: #ffffff;
+  border-color: #34495e;
+  transition: background-color 0.5s, border-color 0.5s;
+  border: 5px;
+}
+button:hover, button:active {
+  background-color:#3498db;
+  border-color:#2980b9;
+}
+
+footer {
+  color:#ffffff;
+  background-color: #2c3e50;
+  display: flex;
+  align-items: center;
+}
