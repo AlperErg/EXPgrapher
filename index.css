@@ -1,3 +1,7 @@
+  :root {
+  /* Define local variables */
+  --contentsize: 40rem;
+  }
  /* The Modal (background) */
  .modal {
     display: none; /* Hidden by default */
@@ -159,17 +163,17 @@ footer {
 }
 .content {
   flex-grow: 1;
+  height: 100%;
 }
 .leftSec {
   width:min-content;
-  --leftsize: width;
+  --leftwidth: min-content;
   flex-grow: 1;
   float: left;
   background-color: #eee;
+  height: var(--contentsize);
 }
 .rightSec {
-  float: right;
-  flex-shrink: 1;
   background-color: #3498db;
-  width: calc(100% - var(--leftsize));
+  height: var(--contentsize);
 }
