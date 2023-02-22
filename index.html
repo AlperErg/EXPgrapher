@@ -32,20 +32,21 @@
     </nav>
   </header>
 
-
-  <div class="tableClass" id="myGrid"></div>
-
- 
-    
-  <div class="graphClass">
-  <canvas id="graphCanvas" style="border:1px solid #000000;" background="white"></canvas>
+  <div class="content">
+    <div class="leftSec">
+      <div class="tableClass" id="myGrid"></div>
+      <div class="feedbackContainer">
+        <div class="feedbackBox" id="feedbackBoxid">Something went wrong. You should be getting feedback here. Sorry.</div>
+      </div>
+    </div>
+    <div class="rightSec">
+      <div class="graphClass">
+        <canvas id="graphCanvas" style="border:1px solid #000000;" background="white"></canvas>
+      </div>
+    </div>
+    <!-- The snackbar for messages to user -->
+    <div id="snackbar"></div>
   </div>
-
-  <div class="feedbackContainer">
-  <div class="feedbackBox" id="feedbackBoxid">Something went wrong. You should be getting feedback here. Sorry.</div>
-  </div>
-
-
   <!-- The Modal -->
   <div id="myModal" class="modal">
 
@@ -57,10 +58,7 @@
 
   </div>
 
-<!-- The snackbar for messages to user -->
-<div id="snackbar"></div>
-
-<!-- The footer -->
+  <!-- The footer -->
 <footer style="background-color: #1e1e1e; color: #FFFFFF; display: flex; align-items: center; padding: 20px 0;">
   <div style="margin-left: 20px;">
     <p style="text-align: center; font-size: 1.5em; margin: 10px 0;">IBtools</p>
@@ -76,7 +74,7 @@
 </footer>
 
 
-<!--links to resources for data table-->
+<!--links to resources-->
 <script src="node_modules/slickgrid/lib/firebugx.js"></script>
 <script src="node_modules/slickgrid/lib/jquery-1.12.4.min.js"></script>
 <script src="node_modules/slickgrid/lib/jquery-ui.min.js"></script>
