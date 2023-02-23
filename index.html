@@ -13,9 +13,6 @@
   <link rel="stylesheet" href="feedback.css" type="text/css"/>
   <link rel="stylesheet" href="index.css" type="text/css"/>
   <link rel="icon" href="resources/icons/iblogo32.png" sizes="32x32">
-  <!--test-->
-  <style>
-  </style>
 </head>
 
 <body>
@@ -32,71 +29,49 @@
     </nav>
   </header>
 
-  <div width="100%" height="50%">
-   <table height = "100%" style="padding:10px">
-    <tr>
-     <td>
-      <table width="100%" height="100%">
-        <tr height="80%">
-          <td>
-           <div class="tableClass" id="myGrid"></div>
-          </td>
-        </tr>
-      </table>
-     </td>
-     <td>
-      <table height = "100%">
-        <tr height = "80%">
-         <td>
-           <div class="graphClass">
-             <canvas id="graphCanvas" style="border:1px solid #000000;" background="white"></canvas>
-           </div>
-         </td>
-        </tr>
-        <tr height ="100%" width="100%">
-          <td>
-            <div class="feedbackContainer">
-              <div class="feedbackBox" id="feedbackBoxid">Something went wrong. You should be getting feedback here. Sorry.</div>
-            </div>
-          </td>
-        </tr>
-      </table>
-     </td>
-    </tr>
-   </table>
-  </div> 
-
+  <div class="content">
+    <div class="leftSec">
+      <div class="tableClass" id="myGrid"></div>
+      <div class="feedbackContainer">
+        <div class="feedbackBox" id="feedbackBoxid"></div>
+      </div>
+    </div>
+    <div class="rightSec">
+      <div class="graphClass">
+        <canvas id="graphCanvas" style="border:1px solid #000000;" background="white"></canvas>
+      </div>
+    </div>
+    <!-- The snackbar for messages to user -->
+    <div id="snackbar"></div>
+  </div>
   <!-- The Modal -->
-<div id="myModal" class="modal">
+  <div id="myModal" class="modal">
 
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <div id="modalContent"></div>
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div id="modalContent"></div>
+    </div>
+
   </div>
 
-</div>
-
-<!-- The snackbar for messages to user -->
-<div id="snackbar"></div>
-
-<!-- The footer -->
-<footer style="background-color: #1e1e1e; color: #FFFFFF; display: flex; align-items: center; padding: 20px 0;">
-  <div style="margin-left: 20px;">
-    <p style="text-align: center; font-size: 1.5em; margin: 10px 0;">IBtools</p>
-  </div>
-  <div style="margin-left: auto; margin-right: 20px;">
-    <ul style="list-style-type: none; margin: 0; padding: 0;">
-      <li><a href="#" style="color: #FFFFFF; font-size: 1.2em; margin: 10px 0; text-decoration: none;">Link 1</a></li>
-      <li><a href="#" style="color: #FFFFFF; font-size: 1.2em; margin: 10px 0; text-decoration: none;">Link 2</a></li>
-      <li><a href="#" style="color: #FFFFFF; font-size: 1.2em; margin: 10px 0; text-decoration: none;">Link 3</a></li>
-      <li><a href="#" style="color: #FFFFFF; font-size: 1.2em; margin: 10px 0; text-decoration: none;">Link 4</a></li>
-    </ul>
-  </div>
-</footer>
+ <!-- The footer -->
+  <footer style="background-color: #1e1e1e; color: #FFFFFF; display: flex; align-items: center; padding: 20px 0;">
+    <div style="margin-left: 20px;">
+      <p style="text-align: center; font-size: 1.5em; margin: 10px 0;">IBtools</p>
+    </div>
+    <div style="margin-left: auto; margin-right: 20px;">
+      <ul style="list-style-type: none; margin: 0; padding: 0;">
+        <li><a href="#" style="color: #FFFFFF; font-size: 1.2em; margin: 10px 0; text-decoration: none;">Link 1</a></li>
+        <li><a href="#" style="color: #FFFFFF; font-size: 1.2em; margin: 10px 0; text-decoration: none;">Link 2</a></li>
+        <li><a href="#" style="color: #FFFFFF; font-size: 1.2em; margin: 10px 0; text-decoration: none;">Link 3</a></li>
+        <li><a href="#" style="color: #FFFFFF; font-size: 1.2em; margin: 10px 0; text-decoration: none;">Link 4</a></li>
+      </ul>
+    </div>
+  </footer>
 
 
-<!--links to resources for data table-->
+<!--links to resources-->
 <script src="node_modules/slickgrid/lib/firebugx.js"></script>
 <script src="node_modules/slickgrid/lib/jquery-1.12.4.min.js"></script>
 <script src="node_modules/slickgrid/lib/jquery-ui.min.js"></script>

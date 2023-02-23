@@ -467,11 +467,13 @@ $(function () {
 		rightPadding: 0,    // defaults to 0
 		bottomPadding: 20,  // defaults to 20
 		minHeight: 150,     // defaults to 180
-		minWidth: 3000,      // defaults to 300
+		minWidth: 300,      // defaults to 300
 
 		// you can also add some max values (none by default)
 		// maxHeight: 1000
+		//Resize table from here, with maxHeight
 		maxWidth: 300,
+		maxHeight: 400,
 	}
 		// the 2nd argument is an object and is optional
 		// you could pass fixed dimensions, you can pass both height/width or a single dimension (passing both would obviously disable the auto-resize completely)

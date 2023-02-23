@@ -5,9 +5,11 @@
   font-size: 8pt;
 }
 
+
 div.tableClass {
   width: 300px;
-  height: 5%;
+  /*this height does not affect the size*/
+  height: 100%;
 }
 
 h1 {
@@ -36,7 +38,6 @@ ul {
 }
 
 .options-panel li {
-  background: url("../images/arrow_right_spearmint.png") no-repeat center left;
   padding: 0 0 0 14px;
 
   list-style: none;
@@ -45,7 +46,6 @@ ul {
 
 #myGrid, .example-grid {
   background: white;
-  outline: 0;
   border: 1px solid gray;
 }
 
@@ -53,7 +53,6 @@ ul {
   border: 1px solid gray;
   border-bottom: 0;
   border-top: 0;
-  background: url('../images/header-bg.gif') repeat-x center top;
   color: black;
   height: 24px;
   line-height: 24px;
@@ -79,12 +78,14 @@ ul {
   margin: 0 4px 0 4px;
   padding: 2px 2px;
   -moz-border-radius: 2px;
+  border-radius: 2px;
   -webkit-border-radius: 2px;
   border: 1px solid silver;
 }
 
 .options-panel {
   -moz-border-radius: 6px;
+  border-radius: 2px;
   -webkit-border-radius: 6px;
   border: 1px solid silver;
   background: #f0f0f0;
@@ -144,6 +145,7 @@ ul {
   display: inline-block;
   height: 6px;
   -moz-border-radius: 3px;
+  border-radius: 2px;
   -webkit-border-radius: 3px;
 }
 
@@ -190,7 +192,6 @@ input.editor-percentcomplete {
   background: url("../images/pencil.gif") no-repeat center center;
   overflow: visible;
   z-index: 1000;
-  float: right;
 }
 
 .editor-percentcomplete-helper {
