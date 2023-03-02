@@ -71,12 +71,7 @@ var editLine = null; //this is to keep track of any lines that the user is dragg
 	// resize the canvas to fill browser window dynamically
 	window.addEventListener("resize", resizeCanvas, false);
 
-	function resizeCanvas() {
-		//console.log("window: (" + window.innerWidth +", "+ window.innerHeight+")");
-		//graphCanvas.width = window.innerWidth - 330;
-		//graphCanvas.height = window.innerHeight - 100;
-		//console.log("graph: (" +  graphCanvas.width +", "+ graphCanvas.height+")");
-        
+	function resizeCanvas() {       
 		/**
          * Your drawings need to be inside this function otherwise they will be reset when 
          * you resize the browser window and the canvas goes will be cleared.
@@ -91,7 +86,6 @@ var editLine = null; //this is to keep track of any lines that the user is dragg
 function drawGraph() {
 	//wipe the old graph
 	if (window.scatterChart != null) {
-		//console.log("destroying...");
 		this.scatterChart.destroy();
 		dataToGraph = [];
 		uncToGraph = [];
@@ -200,34 +194,17 @@ function drawGraph() {
 	yMax += yStep;
 	yMin -= yStep;
     
-    
-	//console.log("yMinorGrid: " + yMinorGrid);
-	//console.log("yMax: " + yMax);
-	//console.log("yMin: " + yMin);
-
-	//console.log("after");
-	//console.log("xMax="+xMax);
-	//console.log("xMin="+xMin);
-	//console.log("yMax="+yMax);
-	//console.log("yMin="+yMin);    
-
 	//Set the pixel Scale
 	xPixelBuffer = graphCanvas.width/10;
 	yPixelBuffer = graphCanvas.height/10;
 	var xPixelWidth = graphCanvas.width - 2*xPixelBuffer;
 	var yPixelHeight = graphCanvas.height - 2*yPixelBuffer;
-	//console.log("Chart area: " + xPixelWidth +", "+yPixelHeight);
 	xUnit2Pixel = xPixelWidth / Math.abs(xMax - xMin);
 	yUnit2Pixel = yPixelHeight / Math.abs(yMax - yMin);
 
 	// //paint the canvas white
-	// ctx.beginPath();
-	// ctx.rect(-2, -2, graphCanvas.width+4, graphCanvas.height+4);
-	// ctx.fillStyle = "white";
-	// ctx.fi
-	// ctx.fill();
 
-	/*draw the minor gridlines
+	/*draws the minor gridlines
     for (var xpos = xMin + xMinorGrid ; xpos <= xMax - xMinorGrid ; xpos += xMinorGrid) {
         ctx.beginPath();
         var pt1 = point2Pixel(xpos, yMax);
