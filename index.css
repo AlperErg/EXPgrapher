@@ -140,6 +140,7 @@ button {
   border-color: #34495e;
   transition: background-color 0.5s, border-color 0.5s;
   border: 5px;
+  margin-top: 5px;
 }
 button:hover, button:active {
   background-color:#3498db;
@@ -151,8 +152,7 @@ header {
   align-items:center;
   justify-content:space-between;
   color:#2c3e50;
-  margin-left: 1rem;
-  margin-right: 1rem;
+  margin: 1vh;
 }
 
 footer {
@@ -171,9 +171,9 @@ footer {
   flex-grow: 1;
   float: left;
   background-color: #eee;
-  height: var(--contentsize);
+  height: 80vh;
 }
 .rightSec {
   background-color: #3498db;
-  height: var(--contentsize);
+  height: 80vh;
 }
