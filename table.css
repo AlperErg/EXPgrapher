@@ -9,7 +9,7 @@
 div.tableClass {
   width: 300px;
   /*this height does not affect the size*/
-  height: 100%;
+  max-height: 50vh;
 }
 
 h1 {
@@ -32,7 +32,6 @@ h2 {
 }
 
 ul {
-  margin-left: 0;
   padding: 0;
   cursor: default;
 }

@@ -140,7 +140,7 @@ button {
   border-color: #34495e;
   transition: background-color 0.5s, border-color 0.5s;
   border: 5px;
-  margin-top: 5px;
+  margin-top: 2vh;
 }
 button:hover, button:active {
   background-color:#3498db;
