@@ -40,11 +40,10 @@ function saveBase64AsFile(base64, fileName) {
 	link.click();
 }
 
+//Reminder. This code and website linked below is licensed under CC BY-NC-SA 4.0 . Modify accordingly.
 function copyDoc() {
 	try {
-		//TODO does not work in IE
-		//TODO: update this URL Stem
-		var url = new URL("C:/g");
+		var url = new URL("graph.betterib.com");
     
 		//load the data item by item
 		url.searchParams.append("dataLength", window.dataset.length);
@@ -84,7 +83,6 @@ function copyDoc() {
 }
 
 
-//TODO: Does not work in IE
 function copyToClipboard(text) {
 	const listener = function(ev) {
 		ev.preventDefault();
