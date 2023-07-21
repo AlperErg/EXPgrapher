@@ -9,6 +9,8 @@
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
    <link rel="stylesheet" href="node_modules/slickgrid/slick.grid.css" type="text/css"/>
    <link rel="stylesheet" href="node_modules/slickgrid/css/smoothness/jquery-ui.css" type="text/css"/>
+   <!--Bootstrap Icons, check site for icon names: https://icons.getbootstrap.com/-->
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
    <link rel="stylesheet" href="table.css" type="text/css"/>
    <link rel="stylesheet" href="graph.css" type="text/css"/>
    <link rel="stylesheet" href="feedback.css" type="text/css"/>
@@ -21,11 +23,30 @@
     <h1>EXPgrapher</h1>
     <nav> 
       <ul>
-        <button onclick="undoRedoBuffer.undo()"> Undo</button>
-        <button onclick="undoRedoBuffer.redo()"> Redo</button>
-        <button onclick="copyDoc()"> Copy URL</button>
-        <button onclick="saveGraph()"> Save Graph</button>
-        <button onclick="copyTable()"> Copy Table</button>
+        <!--Undo-->
+        <button type="button" class="btn btn-outline-light btn-circle" onclick="undoRedoBuffer.undo()">
+          <i class="bi bi-arrow-counterclockwise"></i>
+        </button>
+        <!--Redo-->
+        <button type="button" class="btn btn-outline-light btn-circle" onclick="undoRedoBuffer.redo()">
+          <i class="bi bi-arrow-clockwise"></i>
+        </button>
+        <!--copy graph as png-->
+        <button type="button" class="btn btn-outline-light btn-circle" onclick="saveGraph()">
+          <i class="bi bi-download"></i>
+        </button>
+        <!--copy link-->
+        <button type="button" class="btn btn-outline-light btn-circle" id="linkShareButton" onclick="copyDoc()">
+          <i class="bi bi-share-fill"></i>
+        </button>
+        <!--Apple Web Share-->
+        <button type="button" class="btn btn-outline-light btn-circle" id="appleShareButton" onclick="shareContent()">
+          <i class="bi bi-box-arrow-up"></i>
+        </button>         
+        <!--Have to move this part somewhere else, not needed here
+        copy table
+        <button type="button" class="btn btn-light btn-circle" onclick="copyTable()"> Copy Table</button>
+        -->
       </ul>
     </nav>
   </header>
@@ -88,6 +109,16 @@
 
 <!--Bootstrap 5.3.0-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+<!--Apple Web Share API-->
+<script src="webshare.js"></script>
+<script>
+  if (!navigator.share) {
+    document.getElementById("appleShareButton").style.display = "none"; // Hide the apple share button if the Apple Web Share API is not supported
+  }
+  else{
+    document.getElementById("linkShareButton").style.display = "none"; // Hide the link share button if the API is supported
+  }
+</script>
 
 
 <script type="text/javascript">
