@@ -204,3 +204,20 @@ footer {
   background-color: #3498db;
   height: 80vh;
 }
+.coffeecontainer {
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color:#34495e;
+}
+.coffee {
+  width: 100%;
+  max-width: 800px; /* Optional: Set a maximum width for the content */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+}

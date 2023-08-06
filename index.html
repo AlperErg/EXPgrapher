@@ -73,7 +73,15 @@
       <div id="modalContent"></div>
     </div>
   </div>
-
+  <!--Buy me a coffee please-->
+  <div class="coffeecontainer">
+    <div class="coffee">
+      <h2>
+        Welcome. This application is fully free for everyone. If you want to help me keep this site open, please donate a small sum.
+      </h2>
+      <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="alperergune" data-color="#FFDD00" data-emoji=""  data-font="Inter" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
+    </div>
+  </div>
  <!-- The footer -->
   <footer style="background-color: #1e1e1e; color: #FFFFFF; display: flex; align-items: center; padding: 20px 0;">
     <div>
@@ -119,27 +127,42 @@
     document.getElementById("linkShareButton").style.display = "none"; // Hide the link share button if the API is supported
   }
 </script>
+<!--Web Analytics Tracker -->
+  <script type="text/javascript">
+    //<![CDATA[
+    var owa_baseUrl = 'https://stats.betterib.com/';
+    var owa_cmds = owa_cmds || [];
+    owa_cmds.push(['setSiteId', '9f5d8dcc0de773510c2c57ad0c2573ba']);
+    owa_cmds.push(['trackPageView']);
+    owa_cmds.push(['trackClicks']);
+    (function() {
+    var _owa = document.createElement('script'); _owa.type = 'text/javascript'; _owa.async = true;
+    owa_baseUrl = ('https:' == document.location.protocol ? window.owa_baseSecUrl || owa_baseUrl.replace(/http:/, 'https:') : owa_baseUrl );
+    _owa.src = owa_baseUrl + 'modules/base/dist/owa.tracker.js';
+    var _owa_s = document.getElementsByTagName('script')[0]; _owa_s.parentNode.insertBefore(_owa, _owa_s);
+    }());
+    //]]>
+  </script>
 
-
-<script type="text/javascript">
-  [
-      "table.js",
-      "graph.js",  
-      "feedback.js", 
-      "windowFunctions.js", 
-      "modal.js", 
-  ].forEach(function(src) {
-      var script = document.createElement('script');
-      script.setAttribute("id", src);
-      script.src = src;
-      script.async = false;
-      document.head.appendChild(script);
-  });
-     function startup() {
-      evaluate();
-  }
-  window.onload = startup; 
-</script>
+  <script type="text/javascript">
+    [
+        "table.js",
+        "graph.js",  
+        "feedback.js", 
+        "windowFunctions.js", 
+        "modal.js", 
+    ].forEach(function(src) {
+        var script = document.createElement('script');
+        script.setAttribute("id", src);
+        script.src = src;
+        script.async = false;
+        document.head.appendChild(script);
+    });
+       function startup() {
+        evaluate();
+    }
+    window.onload = startup; 
+  </script>
 
 </body>
 </html>
