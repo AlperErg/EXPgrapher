@@ -2,12 +2,12 @@ div.feedbackBox {
     background-color: rgb(255, 255, 255);
     width: 100%;
     height: 100%;
-    overflow: auto;
-    scroll-behavior: auto;
   }
  div.feedbackContainer {
     width: 100%;
+    height: 48%;
     display: flex;
     justify-content: center; 
     align-items: center;
+    overflow-y:scroll;
  }
