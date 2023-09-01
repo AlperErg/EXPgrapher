@@ -3,8 +3,14 @@
   --contentsize: 40rem;
   }
 
-/*the snackbar styling*/
-/* The snackbar - position it at the bottom and in the middle of the screen */
+  @font-face {
+    font-family: 'Andada'; /* Your chosen font family name */
+    src: url('fonts/AndadaPro.ttf') format('truetype'); /* Adjust the path and format as needed */
+    /* You can include other font properties here, such as font-weight and font-style */
+  }
+
+  /*the snackbar styling*/
+  /* The snackbar - position it at the bottom and in the middle of the screen */
   #snackbar {
     visibility: hidden; /* Hidden by default. Visible on click */
     min-width: 250px; /* Set a default minimum width */
@@ -184,25 +190,28 @@ footer {
   margin-top: 1vh;
   margin-bottom: 1vh;
 }
-        /* Custom CSS for the modal */
-        .custom-modal {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-        }
+/* Custom CSS for the modal */
+.custom-modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
 
-        .modal-content {
-            background-color: #001f3f; /* Very dark shade of blue */
-            border-radius: 15px; /* Rounded corners */
-            text-align: center;
-            padding: 20px;
-            color: white; /* White text color */
-            font-size: 18px; /* Larger font size */
-            border: none; /* Remove the border */
-            box-shadow: none; /* Remove the box shadow */
-        }
-
-        .modal-header {
-            border: none; /* Remove the header border */
-        }
+.modal-content {
+    background-color: #001f3f; /* Very dark shade of blue */
+    border-radius: 15px; /* Rounded corners */
+    text-align: left;
+    padding: 10px;
+    color: white; /* White text color */
+    border: none; /* Remove the border */
+    box-shadow: none; /* Remove the box shadow */
+}
+.modal-header {
+    border: none; /* Remove the header border */
+}
+li {
+  font-size: 18px; /*change modal font size here*/
+  margin-top: 20px;
+  font-family: 'CustomFont', Andada;
+}
