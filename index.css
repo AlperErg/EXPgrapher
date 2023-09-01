@@ -2,43 +2,6 @@
   /* Define local variables */
   --contentsize: 40rem;
   }
- /* The Modal (background) */
- .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  }
-
-  /* Modal Content/Box */
-  .modal-content {
-    background-color: #34495e;
-    margin: 0% auto; /* 15% from the top and centered */
-    padding: 10px;
-    border: 1px solid #34495e;
-    width: 80%; /* Could be more or less, depending on screen size */
-  }
-
-  /* The Close Button */
-  .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
-
-  .close:hover,
-  .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-  } 
 
 /*the snackbar styling*/
 /* The snackbar - position it at the bottom and in the middle of the screen */
@@ -221,3 +184,25 @@ footer {
   margin-top: 1vh;
   margin-bottom: 1vh;
 }
+        /* Custom CSS for the modal */
+        .custom-modal {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .modal-content {
+            background-color: #001f3f; /* Very dark shade of blue */
+            border-radius: 15px; /* Rounded corners */
+            text-align: center;
+            padding: 20px;
+            color: white; /* White text color */
+            font-size: 18px; /* Larger font size */
+            border: none; /* Remove the border */
+            box-shadow: none; /* Remove the box shadow */
+        }
+
+        .modal-header {
+            border: none; /* Remove the header border */
+        }
