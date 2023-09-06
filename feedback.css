@@ -3,7 +3,7 @@ div.feedbackBox {
   }
  div.feedbackContainer {
     width: 100%;
-    height: 38%;
+    max-height: 30vh;
     display: flex;
     justify-content: center; 
     align-items: center;

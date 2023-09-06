@@ -2,23 +2,51 @@
 <html lang=en>
 
  <head>
-   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-   <meta name="viewport" content="width=device-width, initial-scale=1">
-   <title>BetterIB EXPgrapher</title>
-   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-   <link rel="stylesheet" href="node_modules/slickgrid/slick.grid.css" type="text/css"/>
-   <link rel="stylesheet" href="node_modules/slickgrid/css/smoothness/jquery-ui.css" type="text/css"/>
-   <!--Bootstrap Icons, check site for icon names: https://icons.getbootstrap.com/-->
-   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-   <link rel="stylesheet" href="table.css" type="text/css"/>
-   <link rel="stylesheet" href="graph.css" type="text/css"/>
-   <link rel="stylesheet" href="feedback.css" type="text/css"/>
-   <link rel="stylesheet" href="index.css" type="text/css"/>
-   <link rel="icon" href="resources/icons/iblogo32.png" sizes="32x32">
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BetterIB EXPgrapher</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="node_modules/slickgrid/slick.grid.css" type="text/css"/>
+    <link rel="stylesheet" href="node_modules/slickgrid/css/smoothness/jquery-ui.css" type="text/css"/>
+    <!--Bootstrap 5.3.0-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <!--Bootstrap Icons, check site for icon names: https://icons.getbootstrap.com/   -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="table.css" type="text/css"/>
+    <link rel="stylesheet" href="graph.css" type="text/css"/>
+    <link rel="stylesheet" href="feedback.css" type="text/css"/>
+    <link rel="stylesheet" href="index.css" type="text/css"/>
+    <link rel="icon" href="resources/icons/iblogo32.png" sizes="32x32">
  </head>
 
 <body>
+<!--Welcome Modal-->
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+          <!-- Modal Body -->
+          <div class="modal-body">
+              <ul style="list-style: none; padding: 0">
+                  <h1 style="font-family: 'CustomFont', Andada; font-size: 2rem;">Welcome to EXPgrapher!</h1>
+                  <li><i class="bi bi-laptop popupicon"></i>A PC or Tablet is highly recommended.</li>
+                  <li><i class="bi bi-cursor popupicon"></i>You can configure the graph by clicking around it.</li>
+                  <li><i class="bi bi-journal-check popupicon"></i>On the left you can see helpful feedback.</li>
+                  <li><i class="bi bi-share popupicon"></i>To export your graph, you can use buttons on the top right.</li>
+              </ul>
+          </div>
+
+          <!-- Modal Footer -->
+          <div class="modal-footer justify-content-center" style="display: flex; flex: 1; flex-direction: column;">
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="doNotShowAgain">
+              <label class="form-check-label" for="doNotShowAgain">Do not show again</label>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="hidePopup()">Enter the App!</button>
+          </div>
+      </div>
+  </div>
+</div>
   <header>
     <h1>EXPgrapher</h1>
     <nav> 
@@ -50,7 +78,7 @@
       </ul>
     </nav>
   </header>
-
+  <!--Grapher-->
   <div class="content">
     <div class="leftSec">
       <div class="tableClass" id="myGrid"></div>
@@ -66,7 +94,7 @@
     <!--The snackbar-->
     <div id="snackbar"></div>
   </div>
-  <!--Modal -->
+  <!--Deprecated Modal -->
   <div id="myModal" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
@@ -76,8 +104,8 @@
   <!--Buy me a coffee please-->
   <div class="coffeecontainer">
     <div class="coffee">
-      <h2>
-        Welcome. This application is fully free for everyone. If you want to help me keep this site open, please donate a small sum.
+      <h2 style="padding-bottom: 0.8em;">
+        This application is fully free for everyone. If you want to help me keep this site open, you can donate a small sum.
       </h2>
       <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="alperergune" data-color="#FFDD00" data-emoji=""  data-font="Inter" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
     </div>
@@ -85,7 +113,7 @@
  <!-- The footer -->
   <footer style="background-color: #1e1e1e; color: #FFFFFF; display: flex; align-items: center; padding: 20px 0;">
     <div>
-      <a href="https://www.betterib.com" style="text-align:center; color: #FFFFFF; font-size: 1.5em; margin: 10px 0; text-decoration: none;">BetterIB | EXPgrapher</a><p style="color: gainsboro;">v2</p>
+      <a href="https://www.betterib.com" style="text-align:center; color: #FFFFFF; font-size: 1.5em; margin: 10px 0; text-decoration: none;">BetterIB | EXPgrapher</a><p style="color: gainsboro;">v3</p>
     </div>
     <div style="margin-left: auto;">
       <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/">
@@ -115,8 +143,6 @@
 <script src="node_modules/chart.js/dist/Chart.js"></script>
 <script src="node_modules/slickgrid/slick.interactions.js"></script>
 
-<!--Bootstrap 5.3.0-->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 <!--Apple Web Share API-->
 <script src="webshare.js"></script>
 <script>
@@ -163,6 +189,49 @@
     }
     window.onload = startup; 
   </script>
+<!-- JavaScript to control the welcome popup -->
+<script>
+  // Function to set a cookie
+  function setCookie(name, value, days) {
+      var expires = "";
+      if (days) {
+          var date = new Date();
+          date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+          expires = "; expires=" + date.toUTCString();
+      }
+      document.cookie = name + "=" + (value || "") + expires + "; path=/";
+  }
 
+  // Function to get a cookie by name
+  function getCookie(name) {
+      var nameEQ = name + "=";
+      var cookies = document.cookie.split(';');
+      for (const element of cookies) {
+          var cookie = element;
+          while (cookie.charAt(0) == ' ') {
+              cookie = cookie.substring(1, cookie.length);
+          }
+          if (cookie.indexOf(nameEQ) == 0) {
+              return cookie.substring(nameEQ.length, cookie.length);
+          }
+      }
+      return null;
+  }
+  // Function to check if the popup should be displayed
+  function shouldShowPopup() {
+      return getCookie("popupShown") !== "true";
+  }
+  // Function to hide the popup and set the "Do not show again" cookie
+  function hidePopup() {
+      setCookie("popupShown", "true", 365); // Cookie expires after 365 days
+      $("#myModal").modal("hide");
+  }
+  // Show the popup if necessary
+  $(document).ready(function () {
+      if (shouldShowPopup()) {
+          $("#myModal").modal("show");
+      }
+  });
+</script>
 </body>
 </html>
