@@ -211,7 +211,16 @@ footer {
     border: none; /* Remove the header border */
 }
 li {
-  font-size: 18px; /*change modal font size here*/
+  font-size: 1rem; /*change modal font size here*/
   margin-top: 20px;
   font-family: 'CustomFont', Andada;
+  display: flex;
+  flex: 1;
+  justify-content: left;
+  align-items: center;
+  padding: 10px;
+}
+.popupicon {
+  font-size: 1.8em;
+  padding-right: 0.6em;
 }
