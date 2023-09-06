@@ -95,22 +95,6 @@ table {
   border-color: #34495e;
 }
 
-/* Form elements */
-input[type="text"], input[type="password"], input[type="email"], textarea {
-  background-color: #2c3e50;
-  color: #ffffff;
-  border-color: #34495e;
-}
-input[type="submit"] {
-  background-color: #3498db;
-  color: #ffffff;
-  border-color: #2980b9;
-}
-input[type="submit"]:hover, input[type="submit"]:active {
-  background-color: #2980b9;
-  border-color: #3498db;
-}
-
 /* Code blocks */
 pre, code {
   background-color: #2c3e50;
@@ -157,9 +141,10 @@ footer {
   margin-top: 1vh;
   margin-bottom: 1vh;
 }
+/*graph elements*/
 .content {
   flex-grow: 1;
-  height: 100%;
+  height: 80vh;
 }
 .leftSec {
   width:min-content;
@@ -167,11 +152,11 @@ footer {
   flex-grow: 1;
   float: left;
   background-color: #eee;
-  height: 80vh;
-}
+  height: inherit;
+} 
 .rightSec {
-  background-color: #3498db;
-  height: 80vh;
+  background-color: white;
+  height: inherit;
 }
 .coffeecontainer {
   height: 20%;
@@ -179,6 +164,7 @@ footer {
   justify-content: center;
   align-items: center;
   background-color:#34495e;
+  padding: 0.5em;
 }
 .coffee {
   width: 100%;

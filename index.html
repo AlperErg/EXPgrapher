@@ -21,10 +21,7 @@
  </head>
 
 <body>
-  <!--Popup here, welcoming users and recommending laptop/tablet usage-->
-  <!--Let them know they can customise the graph by simply clicking the graph area.-->
-  <!--Use bootstrap for a rounded and simple design-->
-<!-- The Modal -->
+<!--Welcome Modal-->
 <div class="modal fade" id="myModal">
   <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
@@ -40,7 +37,7 @@
           </div>
 
           <!-- Modal Footer -->
-          <div class="modal-footer justify-content-center">
+          <div class="modal-footer justify-content-center" style="display: flex; flex: 1; flex-direction: column;">
             <div class="form-check">
               <input type="checkbox" class="form-check-input" id="doNotShowAgain">
               <label class="form-check-label" for="doNotShowAgain">Do not show again</label>
@@ -81,7 +78,7 @@
       </ul>
     </nav>
   </header>
-
+  <!--Grapher-->
   <div class="content">
     <div class="leftSec">
       <div class="tableClass" id="myGrid"></div>
@@ -97,7 +94,7 @@
     <!--The snackbar-->
     <div id="snackbar"></div>
   </div>
-  <!--Modal -->
+  <!--Deprecated Modal -->
   <div id="myModal" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
@@ -107,8 +104,8 @@
   <!--Buy me a coffee please-->
   <div class="coffeecontainer">
     <div class="coffee">
-      <h2>
-        Welcome. This application is fully free for everyone. If you want to help me keep this site open, please donate a small sum.
+      <h2 style="padding-bottom: 0.8em;">
+        This application is fully free for everyone. If you want to help me keep this site open, you can donate a small sum.
       </h2>
       <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="alperergune" data-color="#FFDD00" data-emoji=""  data-font="Inter" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
     </div>
