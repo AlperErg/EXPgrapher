@@ -169,27 +169,7 @@
     }());
     //]]>
   </script>
-
-  <script type="text/javascript">
-    [
-        "table.js",
-        "graph.js",  
-        "feedback.js", 
-        "windowFunctions.js", 
-        "modal.js", 
-    ].forEach(function(src) {
-        var script = document.createElement('script');
-        script.setAttribute("id", src);
-        script.src = src;
-        script.async = false;
-        document.head.appendChild(script);
-    });
-       function startup() {
-        evaluate();
-    }
-    window.onload = startup; 
-  </script>
-<!-- JavaScript to control the welcome popup -->
+ <!-- JavaScript to control the welcome popup -->
 <script>
   // Function to set a cookie
   function setCookie(name, value, days) {
@@ -233,5 +213,24 @@
       }
   });
 </script>
+  <script type="text/javascript">
+    [
+        "table.js",
+        "graph.js",  
+        "feedback.js", 
+        "windowFunctions.js", 
+        "modal.js", 
+    ].forEach(function(src) {
+        var script = document.createElement('script');
+        script.setAttribute("id", src);
+        script.src = src;
+        script.async = false;
+        document.head.appendChild(script);
+    });
+       function startup() {
+        evaluate();
+    }
+    window.onload = startup; 
+  </script>
 </body>
 </html>
