@@ -20,217 +20,218 @@
     <link rel="icon" href="resources/icons/iblogo32.png" sizes="32x32">
  </head>
 
-<body>
-<!--Welcome Modal-->
-<div class="modal fade" id="myModal">
-  <div class="modal-dialog modal-dialog-centered">
+  <body>
+    <!--Welcome Modal-->
+    <div class="modal fade" id="myModal">
+      <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+              <!-- Modal Body -->
+              <div class="modal-body">
+                  <ul style="list-style: none; padding: 0">
+                      <h1 style="font-family: 'CustomFont', Andada; font-size: 2rem;">Welcome to EXPgrapher!</h1>
+                      <li><i class="bi bi-laptop popupicon"></i>A PC or Tablet is highly recommended.</li>
+                      <li><i class="bi bi-cursor popupicon"></i>You can configure the graph by clicking around it.</li>
+                      <li><i class="bi bi-journal-check popupicon"></i>On the left you can see helpful feedback.</li>
+                      <li><i class="bi bi-share popupicon"></i>To export your graph, you can use buttons on the top right.</li>
+                  </ul>
+              </div>
+
+              <!-- Modal Footer -->
+              <div class="modal-footer justify-content-center" style="display: flex; flex: 1; flex-direction: column;">
+                <div class="form-check">
+                  <input type="checkbox" class="form-check-input" id="doNotShowAgain">
+                  <label class="form-check-label" for="doNotShowAgain">Do not show again</label>
+                </div>
+                <button type="button" class="btn btn-primary" onclick="hidePopup()">Enter the App!</button>
+              </div>
+          </div>
+      </div>
+    </div>
+    <header>
+      <h1>EXPgrapher</h1>
+      <nav> 
+        <ul>
+          <!--Undo-->
+          <button type="button" class="btn btn-outline-light btn-circle" onclick="undoRedoBuffer.undo()">
+            <i class="bi bi-arrow-counterclockwise"></i>
+          </button>
+          <!--Redo-->
+          <button type="button" class="btn btn-outline-light btn-circle" onclick="undoRedoBuffer.redo()">
+            <i class="bi bi-arrow-clockwise"></i>
+          </button>
+          <!--copy graph as png-->
+          <button type="button" class="btn btn-outline-light btn-circle" onclick="saveGraph()">
+            <i class="bi bi-download"></i>
+          </button>
+          <!--copy link-->
+          <button type="button" class="btn btn-outline-light btn-circle" id="linkShareButton" onclick="copyDoc()">
+            <i class="bi bi-share-fill"></i>
+          </button>
+          <!--Apple Web Share-->
+          <button type="button" class="btn btn-outline-light btn-circle" id="appleShareButton" onclick="shareContent()">
+            <i class="bi bi-box-arrow-up"></i>
+          </button>         
+          <!--Have to move this part somewhere else, not needed here
+          copy table
+          <button type="button" class="btn btn-light btn-circle" onclick="copyTable()"> Copy Table</button>
+          -->
+        </ul>
+      </nav>
+    </header>
+    <!--Grapher-->
+    <div class="content">
+      <div class="leftSec">
+        <div class="tableClass" id="myGrid"></div>
+        <div class="feedbackContainer">
+          <div class="feedbackBox" id="feedbackBoxid"></div>
+        </div>
+      </div>
+      <div class="rightSec">
+        <div class="graphClass">
+          <canvas id="graphCanvas" style="border:1px solid #000000;" background="white"></canvas>
+        </div>
+      </div>
+      <!--The snackbar-->
+      <div id="snackbar"></div>
+    </div>
+    <!--Deprecated Modal -->
+    <div id="myModal" class="modal">
       <div class="modal-content">
-          <!-- Modal Body -->
-          <div class="modal-body">
-              <ul style="list-style: none; padding: 0">
-                  <h1 style="font-family: 'CustomFont', Andada; font-size: 2rem;">Welcome to EXPgrapher!</h1>
-                  <li><i class="bi bi-laptop popupicon"></i>A PC or Tablet is highly recommended.</li>
-                  <li><i class="bi bi-cursor popupicon"></i>You can configure the graph by clicking around it.</li>
-                  <li><i class="bi bi-journal-check popupicon"></i>On the left you can see helpful feedback.</li>
-                  <li><i class="bi bi-share popupicon"></i>To export your graph, you can use buttons on the top right.</li>
-              </ul>
-          </div>
-
-          <!-- Modal Footer -->
-          <div class="modal-footer justify-content-center" style="display: flex; flex: 1; flex-direction: column;">
-            <div class="form-check">
-              <input type="checkbox" class="form-check-input" id="doNotShowAgain">
-              <label class="form-check-label" for="doNotShowAgain">Do not show again</label>
-            </div>
-            <button type="button" class="btn btn-primary" onclick="hidePopup()">Enter the App!</button>
-          </div>
-      </div>
-  </div>
-</div>
-  <header>
-    <h1>EXPgrapher</h1>
-    <nav> 
-      <ul>
-        <!--Undo-->
-        <button type="button" class="btn btn-outline-light btn-circle" onclick="undoRedoBuffer.undo()">
-          <i class="bi bi-arrow-counterclockwise"></i>
-        </button>
-        <!--Redo-->
-        <button type="button" class="btn btn-outline-light btn-circle" onclick="undoRedoBuffer.redo()">
-          <i class="bi bi-arrow-clockwise"></i>
-        </button>
-        <!--copy graph as png-->
-        <button type="button" class="btn btn-outline-light btn-circle" onclick="saveGraph()">
-          <i class="bi bi-download"></i>
-        </button>
-        <!--copy link-->
-        <button type="button" class="btn btn-outline-light btn-circle" id="linkShareButton" onclick="copyDoc()">
-          <i class="bi bi-share-fill"></i>
-        </button>
-        <!--Apple Web Share-->
-        <button type="button" class="btn btn-outline-light btn-circle" id="appleShareButton" onclick="shareContent()">
-          <i class="bi bi-box-arrow-up"></i>
-        </button>         
-        <!--Have to move this part somewhere else, not needed here
-        copy table
-        <button type="button" class="btn btn-light btn-circle" onclick="copyTable()"> Copy Table</button>
-        -->
-      </ul>
-    </nav>
-  </header>
-  <!--Grapher-->
-  <div class="content">
-    <div class="leftSec">
-      <div class="tableClass" id="myGrid"></div>
-      <div class="feedbackContainer">
-        <div class="feedbackBox" id="feedbackBoxid"></div>
+        <span class="close">&times;</span>
+        <div id="modalContent"></div>
       </div>
     </div>
-    <div class="rightSec">
-      <div class="graphClass">
-        <canvas id="graphCanvas" style="border:1px solid #000000;" background="white"></canvas>
+    <!--Buy me a coffee please-->
+    <div class="coffeecontainer">
+      <div class="coffee">
+        <h2 style="padding-bottom: 0.8em;">
+          This application is fully free for everyone. If you want to help me keep this site open, you can donate a small sum.
+        </h2>
+        <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="alperergune" data-color="#FFDD00" data-emoji=""  data-font="Inter" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
       </div>
     </div>
-    <!--The snackbar-->
-    <div id="snackbar"></div>
-  </div>
-  <!--Deprecated Modal -->
-  <div id="myModal" class="modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <div id="modalContent"></div>
-    </div>
-  </div>
-  <!--Buy me a coffee please-->
-  <div class="coffeecontainer">
-    <div class="coffee">
-      <h2 style="padding-bottom: 0.8em;">
-        This application is fully free for everyone. If you want to help me keep this site open, you can donate a small sum.
-      </h2>
-      <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="alperergune" data-color="#FFDD00" data-emoji=""  data-font="Inter" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
-    </div>
-  </div>
- <!-- The footer -->
-  <footer style="background-color: #1e1e1e; color: #FFFFFF; display: flex; align-items: center; padding: 20px 0;">
-    <div>
-      <a href="https://www.betterib.com" style="text-align:center; color: #FFFFFF; font-size: 1.5em; margin: 10px 0; text-decoration: none;">BetterIB | EXPgrapher</a><p style="color: gainsboro;">v3</p>
-    </div>
-    <div style="margin-left: auto;">
-      <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/">
-        <a property="dct:title" rel="cc:attributionURL" href="http://graph.betterib.com" style="text-decoration: none;">EXPgrapher</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://github.com/AlperErg" style="text-decoration: none;">Alper Erg&uuml;ne</a> is licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block; text-decoration: none;">CC BY-NC-SA 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1"></a>
-      </p>
+    <!-- The footer -->
+    <footer style="background-color: #1e1e1e; color: #FFFFFF; display: flex; align-items: center; padding: 20px 0;">
+      <div>
+        <a href="https://www.betterib.com" style="text-align:center; color: #FFFFFF; font-size: 1.5em; margin: 10px 0; text-decoration: none;">BetterIB | EXPgrapher</a><p style="color: gainsboro;">v3</p>
+      </div>
+      <div style="margin-left: auto;">
+        <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/">
+          <a property="dct:title" rel="cc:attributionURL" href="http://graph.betterib.com" style="text-decoration: none;">EXPgrapher</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://github.com/AlperErg" style="text-decoration: none;">Alper Erg&uuml;ne</a> is licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block; text-decoration: none;">CC BY-NC-SA 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1"></a>
+        </p>
 
-    </div>
-  </footer>
+      </div>
+    </footer>
 
 
-<!--links to resources-->
-<script src="node_modules/slickgrid/lib/firebugx.js"></script>
-<script src="node_modules/slickgrid/lib/jquery-1.12.4.min.js"></script>
-<script src="node_modules/slickgrid/lib/jquery-ui.min.js"></script>
-<script src="node_modules/slickgrid/lib/jquery.event.drag-2.3.0.js"></script>
-<script src="node_modules/slickgrid/slick.core.js"></script>
-<script src="node_modules/slickgrid/plugins/slick.cellrangedecorator.js"></script>
-<script src="node_modules/slickgrid/plugins/slick.cellrangeselector.js"></script>
-<script src="node_modules/slickgrid/plugins/slick.cellselectionmodel.js"></script>
-<script src="node_modules/slickgrid/plugins/slick.autotooltips.js"></script>
-<script src="node_modules/slickgrid/plugins/slick.cellexternalcopymanager.js"></script>
-<script src="node_modules/slickgrid/plugins/slick.rowmovemanager.js"></script>
-<script src="node_modules/slickgrid/slick.formatters.js"></script>
-<script src="node_modules/slickgrid/slick.editors.js"></script>
-<script src="node_modules/slickgrid/slick.grid.js"></script>
-<script src="node_modules/slickgrid/plugins/slick.resizer.js"></script>
-<script src="node_modules/chart.js/dist/Chart.js"></script>
-<script src="node_modules/slickgrid/slick.interactions.js"></script>
+    <!--links to resources-->
+    <script src="node_modules/slickgrid/lib/firebugx.js"></script>
+    <script src="node_modules/slickgrid/lib/jquery-1.12.4.min.js"></script>
+    <script src="node_modules/slickgrid/lib/jquery-ui.min.js"></script>
+    <script src="node_modules/slickgrid/lib/jquery.event.drag-2.3.0.js"></script>
+    <script src="node_modules/slickgrid/slick.core.js"></script>
+    <script src="node_modules/slickgrid/plugins/slick.cellrangedecorator.js"></script>
+    <script src="node_modules/slickgrid/plugins/slick.cellrangeselector.js"></script>
+    <script src="node_modules/slickgrid/plugins/slick.cellselectionmodel.js"></script>
+    <script src="node_modules/slickgrid/plugins/slick.autotooltips.js"></script>
+    <script src="node_modules/slickgrid/plugins/slick.cellexternalcopymanager.js"></script>
+    <script src="node_modules/slickgrid/plugins/slick.rowmovemanager.js"></script>
+    <script src="node_modules/slickgrid/slick.formatters.js"></script>
+    <script src="node_modules/slickgrid/slick.editors.js"></script>
+    <script src="node_modules/slickgrid/slick.grid.js"></script>
+    <script src="node_modules/slickgrid/plugins/slick.resizer.js"></script>
+    <script src="node_modules/chart.js/dist/Chart.js"></script>
+    <script src="node_modules/slickgrid/slick.interactions.js"></script>
 
-<!--Apple Web Share API-->
-<script src="webshare.js"></script>
-<script>
-  if (!navigator.share) {
-    document.getElementById("appleShareButton").style.display = "none"; // Hide the apple share button if the Apple Web Share API is not supported
-  }
-  else{
-    document.getElementById("linkShareButton").style.display = "none"; // Hide the link share button if the API is supported
-  }
-</script>
-<!--Web Analytics Tracker -->
-  <script type="text/javascript">
-    //<![CDATA[
-    var owa_baseUrl = 'https://stats.betterib.com/';
-    var owa_cmds = owa_cmds || [];
-    owa_cmds.push(['setSiteId', '9f5d8dcc0de773510c2c57ad0c2573ba']);
-    owa_cmds.push(['trackPageView']);
-    owa_cmds.push(['trackClicks']);
-    (function() {
-    var _owa = document.createElement('script'); _owa.type = 'text/javascript'; _owa.async = true;
-    owa_baseUrl = ('https:' == document.location.protocol ? window.owa_baseSecUrl || owa_baseUrl.replace(/http:/, 'https:') : owa_baseUrl );
-    _owa.src = owa_baseUrl + 'modules/base/dist/owa.tracker.js';
-    var _owa_s = document.getElementsByTagName('script')[0]; _owa_s.parentNode.insertBefore(_owa, _owa_s);
-    }());
-    //]]>
-  </script>
- <!-- JavaScript to control the welcome popup -->
-<script>
-  // Function to set a cookie
-  function setCookie(name, value, days) {
-      var expires = "";
-      if (days) {
-          var date = new Date();
-          date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-          expires = "; expires=" + date.toUTCString();
+    <!--Apple Web Share API-->
+    <script src="webshare.js"></script>
+    <script>
+      if (!navigator.share) {
+        document.getElementById("appleShareButton").style.display = "none"; // Hide the apple share button if the Apple Web Share API is not supported
       }
-      document.cookie = name + "=" + (value || "") + expires + "; path=/";
-  }
-
-  // Function to get a cookie by name
-  function getCookie(name) {
-      var nameEQ = name + "=";
-      var cookies = document.cookie.split(';');
-      for (const element of cookies) {
-          var cookie = element;
-          while (cookie.charAt(0) == ' ') {
-              cookie = cookie.substring(1, cookie.length);
+      else{
+        document.getElementById("linkShareButton").style.display = "none"; // Hide the link share button if the API is supported
+      }
+    </script>
+    <!--Web Analytics Tracker -->
+    <script type="text/javascript">
+      //<![CDATA[
+      var owa_baseUrl = 'https://stats.betterib.com/';
+      var owa_cmds = owa_cmds || [];
+      owa_cmds.push(['setSiteId', '9f5d8dcc0de773510c2c57ad0c2573ba']);
+      owa_cmds.push(['trackPageView']);
+      owa_cmds.push(['trackClicks']);
+      (function() {
+      var _owa = document.createElement('script'); _owa.type = 'text/javascript'; _owa.async = true;
+      owa_baseUrl = ('https:' == document.location.protocol ? window.owa_baseSecUrl || owa_baseUrl.replace(/http:/, 'https:') : owa_baseUrl );
+      _owa.src = owa_baseUrl + 'modules/base/dist/owa.tracker.js';
+      var _owa_s = document.getElementsByTagName('script')[0]; _owa_s.parentNode.insertBefore(_owa, _owa_s);
+      }());
+      //]]>
+    </script>
+    <!-- JavaScript to control the welcome popup -->
+    <script>
+      // Function to set a cookie
+      function setCookie(name, value, days) {
+          var expires = "";
+          if (days) {
+              var date = new Date();
+              date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+              expires = "; expires=" + date.toUTCString();
           }
-          if (cookie.indexOf(nameEQ) == 0) {
-              return cookie.substring(nameEQ.length, cookie.length);
+          document.cookie = name + "=" + (value || "") + expires + "; path=/";
+      }
+
+      // Function to get a cookie by name
+      function getCookie(name) {
+          var nameEQ = name + "=";
+          var cookies = document.cookie.split(';');
+          for (const element of cookies) {
+              var cookie = element;
+              while (cookie.charAt(0) == ' ') {
+                  cookie = cookie.substring(1, cookie.length);
+              }
+              if (cookie.indexOf(nameEQ) == 0) {
+                  return cookie.substring(nameEQ.length, cookie.length);
+              }
           }
+          return null;
       }
-      return null;
-  }
-  // Function to check if the popup should be displayed
-  function shouldShowPopup() {
-      return getCookie("popupShown") !== "true";
-  }
-  // Function to hide the popup and set the "Do not show again" cookie
-  function hidePopup() {
-      setCookie("popupShown", "true", 365); // Cookie expires after 365 days
-      $("#myModal").modal("hide");
-  }
-  // Show the popup if necessary
-  $(document).ready(function () {
-      if (shouldShowPopup()) {
-          $("#myModal").modal("show");
+      // Function to check if the popup should be displayed
+      function shouldShowPopup() {
+          return getCookie("popupShown") !== "true";
       }
-  });
-</script>
-  <script type="text/javascript">
-    [
-        "table.js",
-        "graph.js",  
-        "feedback.js", 
-        "windowFunctions.js", 
-        "modal.js", 
-    ].forEach(function(src) {
-        var script = document.createElement('script');
-        script.setAttribute("id", src);
-        script.src = src;
-        script.async = false;
-        document.head.appendChild(script);
-    });
-       function startup() {
-        evaluate();
-    }
-    window.onload = startup; 
-  </script>
-</body>
+      // Function to hide the popup and set the "Do not show again" cookie
+      function hidePopup() {
+          setCookie("popupShown", "true", 365); // Cookie expires after 365 days
+          $("#myModal").modal("hide");
+      }
+      // Show the popup if necessary
+      $(document).ready(function () {
+          if (shouldShowPopup()) {
+              $("#myModal").modal("show");
+          }
+      });
+    </script>
+    <!--script loader-->
+    <script type="text/javascript">
+      [
+          "table.js",
+          "graph.js",  
+          "feedback.js", 
+          "windowFunctions.js", 
+          "modal.js", 
+      ].forEach(function(src) {
+          var script = document.createElement('script');
+          script.setAttribute("id", src);
+          script.src = src;
+          script.async = false;
+          document.head.appendChild(script);
+      });
+        function startup() {
+          evaluate();
+      }
+      window.onload = startup; 
+    </script>
+  </body>
 </html>
