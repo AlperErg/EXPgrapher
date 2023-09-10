@@ -226,6 +226,7 @@
           script.setAttribute("id", src);
           script.src = src;
           script.async = false;
+          script.defer = true;
           document.head.appendChild(script);
       });
         function startup() {
