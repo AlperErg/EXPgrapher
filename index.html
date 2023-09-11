@@ -95,7 +95,7 @@
       <div id="snackbar"></div>
     </div>
     <!--Deprecated Modal -->
-    <div id="myModal" class="modal">
+    <div id="oldModal" class="modal">
       <div class="modal-content">
         <span class="close">&times;</span>
         <div id="modalContent"></div>
@@ -203,7 +203,7 @@
       }
       // Function to hide the popup and set the "Do not show again" cookie
       function hidePopup() {
-          setCookie("popupShown", "true", 365); // Cookie expires after 365 days
+          setCookie("popupShown", "true", 30); // Cookie expires after 30 days
           $("#myModal").modal("hide");
       }
       // Show the popup if necessary
