@@ -193,6 +193,14 @@ footer {
     border: none; /* Remove the border */
     box-shadow: none; /* Remove the box shadow */
 }
+.graph-modal-content {
+  border-radius: 15px;
+  padding: 1vh;
+  background-color: black;
+  margin-left: 10vh;
+  margin-right: 10vh;
+  margin-top: 15vh;
+}
 .modal-header {
     border: none; /* Remove the header border */
 }
