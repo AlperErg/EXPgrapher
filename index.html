@@ -21,7 +21,7 @@
 
   <body>
     <!--Welcome Modal-->
-    <div class="modal fade" id="myModal">
+    <div class="modal fade" id="welcomeModal">
       <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
               <!-- Modal Body -->
@@ -93,8 +93,8 @@
       <!--The snackbar-->
       <div id="snackbar"></div>
     </div>
-    <!--Deprecated Modal -->
-    <div id="oldModal" class="modal">
+    <!--Graph Config Modal -->
+    <div id="myModal" class="modal">
       <div class="modal-content">
         <span class="close">&times;</span>
         <div id="modalContent"></div>
@@ -143,14 +143,6 @@
 
     <!--Apple Web Share API-->
     <script src="webshare.js"></script>
-    <script>
-      if (!navigator.share) {
-        document.getElementById("appleShareButton").style.display = "none"; // Hide the apple share button if the Apple Web Share API is not supported
-      }
-      else{
-        document.getElementById("linkShareButton").style.display = "none"; // Hide the link share button if the API is supported
-      }
-    </script>
     <!--Web Analytics Tracker -->
     <script type="text/javascript">
       //<![CDATA[
@@ -202,12 +194,12 @@
       // Function to hide the popup and set the "Do not show again" cookie
       function hidePopup() {
           setCookie("popupShown", "true", 30); // Cookie expires after 30 days
-          $("#myModal").modal("hide");
+          $("#welcomeModal").modal("hide");
       }
       // Show the popup if necessary
       $(document).ready(function () {
           if (shouldShowPopup()) {
-              $("#myModal").modal("show");
+              $("#welcomeModal").modal("show");
           }
       });
     </script>
