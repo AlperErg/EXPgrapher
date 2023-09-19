@@ -218,3 +218,11 @@ li {
   font-size: 1.8em;
   padding-right: 0.6em;
 }
+.graph-modal-inside {
+  font-size: 1.5rem;
+  input {
+    border-radius: 10px;
+    font-size: 0.8em;
+    padding: 5px;
+  }
+}
