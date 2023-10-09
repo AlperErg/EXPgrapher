@@ -124,11 +124,13 @@ header {
   display: flex;
   align-items:center;
   justify-content:space-between;
-  color:#2c3e50;
-  margin-left: 2vh;
-  margin-right: 2vh;
-  margin-top: 1vh;
-  margin-bottom: 1vh;
+  background-color: #2c3e50;
+  padding-left: 2em;
+  padding-right: 2em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  margin: 1em;
+  border-radius: 2em;
 }
 
 footer {
@@ -145,6 +147,8 @@ footer {
 .content {
   flex-grow: 1;
   height: 80vh;
+  margin-left: 1em;
+  margin-right: 1em;
 }
 .leftSec {
   width:min-content;
@@ -164,7 +168,9 @@ footer {
   justify-content: center;
   align-items: center;
   background-color:#34495e;
-  padding: 0.5em;
+  padding: 1em;
+  margin: 1em;
+  border-radius: 2em;
 }
 .coffee {
   width: 100%;
