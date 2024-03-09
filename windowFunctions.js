@@ -43,8 +43,7 @@ function saveBase64AsFile(base64, fileName) {
 //Reminder. This code and website linked below is licensed under CC BY-NC-SA 4.0 . Modify accordingly.
 function copyDoc() {
 	try {
-		var url = new URL("graph.betterib.com");
-    
+		var url = new URL("https://grapher.betterib.com");
 		//load the data item by item
 		url.searchParams.append("dataLength", window.dataset.length);
 		for (var copyRow = 0; copyRow < window.dataset.length; copyRow++) {
@@ -71,15 +70,10 @@ function copyDoc() {
 			url.searchParams.append("line"+lineOrder+"data1x", line.data[1].x);
 			url.searchParams.append("line"+lineOrder+"data1y", line.data[1].y);
 		}
-        
-		//copy to clipboard
-		copyToClipboard(url.href);
+		return url.href;
 	} catch (err) {
 		window.alert("Error: " + err);
 	}
-	// popup a snackbar
-	popupSnackbar("URL copied!");
-    
 }
 
 

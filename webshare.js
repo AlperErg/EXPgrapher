@@ -1,8 +1,9 @@
 function shareContent() {
+    const graphLink = copyDoc();
     const data = {
         title: "BetterIB EXPgrapher",
         text: "Link to a graph",
-        url: copyDoc, //not working at the moment maybe transfer this code to index html
+        url: graphLink, //not working at the moment maybe transfer this code to index html
     };
   
     if (navigator.share) {
