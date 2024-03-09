@@ -27,7 +27,7 @@ function saveGraph() {
 	var graph = $("#graphCanvas")[0].toDataURL();
 
 	//save the file
-	saveBase64AsFile(graph, "myGraph.png");
+	saveBase64AsFile(graph, `${window.graphTitle}.png`);
 }
 
 function saveBase64AsFile(base64, fileName) {
