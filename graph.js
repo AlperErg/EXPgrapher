@@ -521,7 +521,7 @@ function down_handler(event) {
             "Best Fit Line: start at (<input type='text' id='line1data0x' name='line1data0x' value='"+allData[1].data[0].x+"'>, <input type='text' id='line1data0y' name='line1data0y' value='"+allData[1].data[0].y+"'>), End at: (<input type='text' id='line1data1x' name='line1data1x' value='"+allData[1].data[1].x+"'>, <input type='text' id='line1data1y' name='line1data1y' value='"+allData[1].data[1].y+"'>)<br>"+
             "Max Fit Line: start at (<input type='text' id='line2data0x' name='line2data0x' value='"+allData[2].data[0].x+"'>, <input type='text' id='line2data0y' name='line2data0y' value='"+allData[2].data[0].y+"'>), End at: (<input type='text' id='line2data1x' name='line2data1x' value='"+allData[2].data[1].x+"'>, <input type='text' id='line2data1y' name='line2data1y' value='"+allData[2].data[1].y+"'>)<br>"+
             "Min Fit Line: start at (<input type='text' id='line3data0x' name='line3data0x' value='"+allData[3].data[0].x+"'>, <input type='text' id='line3data0y' name='line3data0y' value='"+allData[3].data[0].y+"'>), End at: (<input type='text' id='line3data1x' name='line3data1x' value='"+allData[3].data[1].x+"'>, <input type='text' id='line3data1y' name='line3data1y' value='"+allData[3].data[1].y+"'>)<br>"+
-            "<button onclick='updateLabels()'>Apply</button><button onclick='closeModal()'>Cancel</button>";
+			"<button style='padding: 1rem' onclick='updateLabels()'>Apply</button><button style='padding: 1rem' onclick='closeModal()'>Cancel</button>";
 	}
     
 	//console.log(event);

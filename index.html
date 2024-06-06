@@ -30,8 +30,8 @@
                       <h1 style="font-family: 'CustomFont', Andada; font-size: 2rem;">Welcome to EXPgrapher!</h1>
                       <li><i class="bi bi-laptop popupicon"></i>A PC or a Tablet is highly recommended.</li>
                       <li><i class="bi bi-cursor popupicon"></i>You can configure the graph by clicking around it.</li>
-                      <li><i class="bi bi-journal-check popupicon"></i>If the graph doesn't show up, change a number from the table.</li>
                       <li><i class="bi bi-share popupicon"></i>To export your graph, you can use buttons on the top right.</li>
+                      <li><i class="bi bi-journal-check popupicon"></i>If the graph doesn't show up, start entering numbers.</li>
                   </ul>
               </div>
 
@@ -69,7 +69,9 @@
           <!--Apple Web Share-->
           <button type="button" class="btn btn-outline-light btn-circle" id="appleShareButton" onclick="shareContent()">
             <i class="bi bi-box-arrow-up"></i>
-          </button>         
+          </button>
+          <!--Reload Graph-->
+          <button type="button" class="btn btn-outline-light" onclick="startup()">Reload Graph</button>    
           <!--Have to move this part somewhere else, not needed here
           copy table
           <button type="button" class="btn btn-light btn-circle" onclick="copyTable()"> Copy Table</button>
@@ -209,10 +211,10 @@
     <script type="text/javascript">
       [
           "table.js",
-          "graph.js",  
-          "feedback.js", 
+          "graph.js",   
           "windowFunctions.js", 
-          "modal.js", 
+          "modal.js",
+          "feedback.js", 
       ].forEach(function(src) {
           var script = document.createElement('script');
           script.setAttribute("id", src);
