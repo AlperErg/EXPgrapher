@@ -379,7 +379,8 @@ function makeGraph() {
 		options: {
 			title: {
 				display: true,
-				text: window.graphTitle
+				text: window.graphTitle,
+				fontSize: 16 // modify the font size here
 			},
 			scales: {
 				xAxes: [{
@@ -387,7 +388,8 @@ function makeGraph() {
 					position: "bottom",
 					scaleLabel: {
 						display: true,
-						labelString: window.graphXAxis + (window.graphXAxisUnits==""?"":" /" + window.graphXAxisUnits)
+						labelString: window.graphXAxis + (window.graphXAxisUnits==""?"":" /" + window.graphXAxisUnits),
+						fontSize: 16
 					},
 					ticks: {
 						max: xMax,
@@ -398,7 +400,8 @@ function makeGraph() {
 				yAxes: [{
 					scaleLabel: {
 						display: true,
-						labelString: window.graphYAxis + (window.graphYAxisUnits==""?"":" /" + window.graphYAxisUnits)
+						labelString: window.graphYAxis + (window.graphYAxisUnits==""?"":" /" + window.graphYAxisUnits),
+						fontSize: 16
 					},
 					ticks: {
 						max: yMax,
@@ -413,6 +416,8 @@ function makeGraph() {
 			//scrub unneeded labels from the legend
 			legend: {
 				labels: {
+					//Change the font size of some graph elements here, except for the title and x/y axis labels.
+					fontSize: 14,
 					filter: function(item, chart) {
 						// Logic to remove a particular legend item goes here
 						return item.text == null || !item.text.includes("NA");
