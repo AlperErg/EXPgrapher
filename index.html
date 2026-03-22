@@ -225,6 +225,11 @@
           document.head.appendChild(script);
       });
         function startup() {
+          // table.js initializes grid on document ready; wait for it before drawing.
+          if (!window.grid || typeof window.grid.getColumns !== "function") {
+            setTimeout(startup, 50);
+            return;
+          }
           drawGraph();
           evaluate();
       }

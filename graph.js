@@ -84,6 +84,11 @@ var editLine = null; //this is to keep track of any lines that the user is dragg
 })();
 
 function drawGraph() {
+	// Grid is initialized asynchronously in table.js on document ready.
+	if (!window.grid || typeof window.grid.getColumns !== "function") {
+		return;
+	}
+
 	//wipe the old graph
 	if (window.scatterChart != null) {
 		this.scatterChart.destroy();

@@ -298,7 +298,7 @@ $(function () {
 			//otherwise, fill in sample data
 			if (i < 5) {
 
-				d["X Data"] = String(10*(i+1)) + ".";
+				d["X Data"] = String(10*(i+1));
 				d["X Uncertainty"] = String(i+1);
 				d["Y Data"] = String(30*(i+1));
 				d["Y Uncertainty"] = String(10);

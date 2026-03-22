@@ -1,12 +1,20 @@
 div.feedbackBox {
     background-color: rgb(255, 255, 255);
+   width: 100%;
+   padding: 0.75rem 1rem;
+   font-size: 1rem;
+   line-height: 1.5;
   }
+div.feedbackBox p {
+   margin: 0 0 0.75rem 0;
+   font-size: 1rem;
+}
  div.feedbackContainer {
     width: 100%;
     max-height: 30vh;
     display: flex;
-    justify-content: center; 
-    align-items: center;
+   justify-content: flex-start; 
+   align-items: flex-start;
     overflow-y:scroll;
     border: 4px;
     border-color: black;

@@ -2,9 +2,15 @@ var dataset = []; //the whole set for formatted and checked data
 
 //called by the DOMContentLoaded event AND when the table is loaded
 function evaluate() {
+	if (!window.grid || typeof window.grid.getColumns !== "function") {
+		return;
+	}
+
 	dataset = [];
 
 	var div = document.getElementById("feedbackBoxid");
+	// Always regenerate from scratch so stale messages never stack.
+	div.innerHTML = "";
 
 
 	//compile messages
@@ -551,9 +557,20 @@ function evaluate() {
 		}
 	}
 
+	// Keep the panel focused on actionable/important items.
+	var minFeedbackSeverity = 40;
+	var visibleFeedback = feedback.filter(function(item) {
+		return item.severity >= minFeedbackSeverity;
+	});
+
+	if (visibleFeedback.length === 0 && dataset.length > 0) {
+		div.innerHTML = "<p style=\"color:rgb(0, 120, 0)\">No major feedback detected. Your data and formatting look reasonable.</p>";
+		return;
+	}
+
 	//display the messages
-	for (var feedbackIndex = 0; feedbackIndex < feedback.length; feedbackIndex++) {
-		div.innerHTML += "<p style=\"color:rgb("+ Math.floor(255*feedback[feedbackIndex].severity/100) +", 0, 0)\">"+(feedbackIndex+1) + ") " + feedback[feedbackIndex].msg+"</p>";        
+	for (var feedbackIndex = 0; feedbackIndex < visibleFeedback.length; feedbackIndex++) {
+		div.innerHTML += "<p style=\"color:rgb("+ Math.floor(255*visibleFeedback[feedbackIndex].severity/100) +", 0, 0)\">" + visibleFeedback[feedbackIndex].msg+"</p>";        
 	}
 
 }
