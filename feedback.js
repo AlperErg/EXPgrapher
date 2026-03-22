@@ -10,7 +10,8 @@ function evaluate() {
 
 	var div = document.getElementById("feedbackBoxid");
 	// Always regenerate from scratch so stale messages never stack.
-	div.innerHTML = "";
+	div.innerHTML = "<div class='feedbackHeading'>Feedback</div><div class='feedbackList' id='feedbackList'></div>";
+	var feedbackList = document.getElementById("feedbackList");
 
 
 	//compile messages
@@ -564,13 +565,20 @@ function evaluate() {
 	});
 
 	if (visibleFeedback.length === 0 && dataset.length > 0) {
-		div.innerHTML = "<p style=\"color:rgb(0, 120, 0)\">No major feedback detected. Your data and formatting look reasonable.</p>";
+		var successItem = document.createElement("article");
+		successItem.className = "feedbackItem feedbackItemSuccess";
+		successItem.textContent = "No major feedback detected. Your data and formatting look reasonable.";
+		feedbackList.appendChild(successItem);
 		return;
 	}
 
 	//display the messages
 	for (var feedbackIndex = 0; feedbackIndex < visibleFeedback.length; feedbackIndex++) {
-		div.innerHTML += "<p style=\"color:rgb("+ Math.floor(255*visibleFeedback[feedbackIndex].severity/100) +", 0, 0)\">" + visibleFeedback[feedbackIndex].msg+"</p>";        
+		var feedbackItem = document.createElement("article");
+		feedbackItem.className = "feedbackItem";
+		feedbackItem.style.setProperty("--feedback-accent", "rgb(" + Math.floor(255*visibleFeedback[feedbackIndex].severity/100) + ", 56, 44)");
+		feedbackItem.textContent = visibleFeedback[feedbackIndex].msg;
+		feedbackList.appendChild(feedbackItem);
 	}
 
 }

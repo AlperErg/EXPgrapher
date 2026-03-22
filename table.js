@@ -136,6 +136,7 @@ var options = {
 	enableAddRow: true,
 	enableCellNavigation: true,
 	asyncEditorLoading: false,
+	rowHeight: 38,
 	autoEdit: true, //required to keep selection viable
 	editCommandHandler: queueAndExecuteCommand,
 	forceFitColumns: true,
@@ -471,9 +472,7 @@ $(function () {
 
 		// you can also add some max values (none by default)
 		// maxHeight: 1000
-		//Resize table from here, with maxHeight
-		maxWidth: 300,
-		maxHeight: 400,
+		// keep uncapped so the grid can fill the responsive card container
 	}
 		// the 2nd argument is an object and is optional
 		// you could pass fixed dimensions, you can pass both height/width or a single dimension (passing both would obviously disable the auto-resize completely)

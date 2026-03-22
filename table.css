@@ -7,8 +7,9 @@
 
 
 div.tableClass {
-  /*this height does not affect the size*/
-  max-height: 50vh;
+  width: 100%;
+  height: 100%;
+  max-height: none;
 }
 
 h1 {
@@ -245,4 +246,119 @@ input.editor-checkbox {
   height: 100%;
   padding: 0;
   border: 0;
+}
+
+/* Phase 1 table polish: modern visual pass while keeping SlickGrid behavior unchanged */
+#myGrid {
+  border: 1px solid var(--line, #d6e4ee);
+  border-radius: 14px;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 10px 24px rgba(20, 33, 41, 0.07);
+  width: 100% !important;
+  height: 100% !important;
+}
+
+#myGrid .slick-header {
+  background: #0f4056 !important;
+  border-bottom: 1px solid #1f607a;
+}
+
+#myGrid .slick-header-columns {
+  background: #0f4056 !important;
+  background-image: none !important;
+  border-bottom: 0;
+}
+
+#myGrid .slick-header-column {
+  height: 44px;
+  line-height: 44px;
+  padding: 0 10px;
+  border-right: 1px solid rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+  background: #0f4056 !important;
+  background-image: none !important;
+  font-family: 'Sora', 'Segoe UI', sans-serif;
+  font-size: 0.84rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+#myGrid .slick-header-column:last-child {
+  border-right: 0;
+}
+
+#myGrid .slick-viewport {
+  background: #ffffff;
+}
+
+#myGrid .slick-row {
+  background: #ffffff;
+}
+
+#myGrid .slick-row:nth-child(even) .slick-cell {
+  background: #fbfdff;
+}
+
+#myGrid .slick-row:hover .slick-cell {
+  background: #eef7fc;
+}
+
+#myGrid .slick-cell {
+  --cell-pad-x: 10px;
+  height: 38px;
+  line-height: 38px;
+  padding: 0 var(--cell-pad-x);
+  border-right: 1px solid #e7eef4;
+  border-bottom: 1px solid #e7eef4;
+  color: #1c2f3b;
+  font-family: 'Manrope', 'Segoe UI', sans-serif;
+  font-size: 0.95rem;
+}
+
+#myGrid .slick-cell:last-child {
+  border-right: 0;
+}
+
+#myGrid .slick-cell.selected,
+#myGrid .slick-row.active .slick-cell {
+  background: #e2f1f9;
+  box-shadow: inset 0 0 0 1px #9bcde1;
+}
+
+input.editor-text {
+  display: block;
+  width: calc(100% + (var(--cell-pad-x) * 2));
+  height: 100%;
+  box-sizing: border-box;
+  margin: 0 calc(-1 * var(--cell-pad-x));
+  border: 1px solid transparent;
+  border-radius: 0;
+  background: #ffffff;
+  color: #102633;
+  padding: 0 var(--cell-pad-x);
+}
+
+input.editor-text:focus {
+  border-color: #0a7ea1;
+  box-shadow: inset 0 0 0 1px rgba(10, 126, 161, 0.2);
+}
+
+#myGrid .slick-cell.copied {
+  background-color: rgba(10, 126, 161, 0.2);
+}
+
+@media (max-width: 768px) {
+  #myGrid .slick-header-column {
+    height: 40px;
+    line-height: 40px;
+    font-size: 0.78rem;
+    padding: 0 8px;
+  }
+
+  #myGrid .slick-cell {
+    --cell-pad-x: 8px;
+    padding: 0 var(--cell-pad-x);
+    font-size: 0.9rem;
+  }
 }
