@@ -29,7 +29,7 @@
                   <ul style="list-style: none; padding: 0">
                       <h1 style="font-family: 'CustomFont', Andada; font-size: 2rem;">Welcome to EXPgrapher!</h1>
                       <li><i class="bi bi-laptop popupicon"></i>A PC or a Tablet is highly recommended.</li>
-                      <li><i class="bi bi-cursor popupicon"></i>You can configure the graph by clicking around it.</li>
+                      <li><i class="bi bi-cursor popupicon"></i>You can configure the graph by clicking the settings button on the top right.</li>
                       <li><i class="bi bi-share popupicon"></i>To export your graph, you can use buttons on the top right.</li>
                       <li><i class="bi bi-journal-check popupicon"></i>If the graph doesn't show up, start entering numbers.</li>
                   </ul>
@@ -69,6 +69,10 @@
           <!--Apple Web Share-->
           <button type="button" class="btn btn-outline-light btn-circle" id="appleShareButton" onclick="shareContent()">
             <i class="bi bi-box-arrow-up"></i>
+          </button>
+          <!--Graph Settings-->
+          <button type="button" class="btn btn-outline-light btn-circle" onclick="openGraphSettingsModal()">
+            <i class="bi bi-gear-fill"></i>
           </button>
           <!--Reload Graph-->
           <button type="button" class="btn btn-outline-light" onclick="startup()">Reload Graph</button>    

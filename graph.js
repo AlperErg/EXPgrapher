@@ -511,33 +511,36 @@ function down_handler(event) {
 			break;
 		}
 	}
-	//otherwise, open up the label editor modal
-	if (event.offsetY < window.scatterChart.chartArea.top || event.offsetY > window.scatterChart.chartArea.bottom || event.offsetX < window.scatterChart.chartArea.left || event.offsetX > window.scatterChart.chartArea.right) {
-		console.log("launch modal");
-		var modal = document.getElementById("myModal");
-		var modalContent = document.getElementById("modalContent");
-		modal.style.display = "block";
-		console.log(allData);
-		modalContent.innerHTML = "<h3>Graph Settings:</h3><h2><br><br>"+
-            "Graph Title: <input type='text' id='newGraphTitle' name='newGraphTitle' value='"+graphTitle+"'><br>"+
-            "Symbol for Independent Variable: <input type='text' id='newXSymbol' name='newXSymbol' value='"+graphXSymbol+"'><br>"+
-            "Symbol for Dependent Variable: <input type='text' id='newYSymbol' name='newYSymbol' value='"+graphYSymbol+"'><br>"+
-            "Horizontal Axis Label: <input type='text' id='newHLabel' name='newHLabel' value='"+graphXAxis+"'><br>"+
-            "Horizontal Axis Units: <input type='text' id='newHLabelUnits' name='newHLabelUnits' value='"+graphXAxisUnits+"'><br>"+
-            "Horizontal Axis: Min <input type='text' id='newHmin' name='newHmin' value='"+xMin+"'>, max <input type='text' id='newHmax' name='newHmax' value='"+xMax+"'>, step size <input type='text' id='newHstep' name='newHstep' value='"+xStep+"'><br>"+  
-            "Vertical Axis Label: <input type='text' id='newVLabel' name='newVLabel' value='"+graphYAxis+"'><br> "+
-            "Vertical Axis Units: <input type='text' id='newVLabelUnits' name='newVLabelUnits' value='"+graphYAxisUnits+"'><br>"+
-            "Vertical Axis: Min <input type='text' id='newVmin' name='newVmin' value='"+yMin+"'>, max <input type='text' id='newVmax' name='newVmax' value='"+yMax+"'>, step size <input type='text' id='newVstep' name='newVstep' value='"+yStep+"'><br>"+  
-            "Best Fit Line: start at (<input type='text' id='line1data0x' name='line1data0x' value='"+allData[1].data[0].x+"'>, <input type='text' id='line1data0y' name='line1data0y' value='"+allData[1].data[0].y+"'>), End at: (<input type='text' id='line1data1x' name='line1data1x' value='"+allData[1].data[1].x+"'>, <input type='text' id='line1data1y' name='line1data1y' value='"+allData[1].data[1].y+"'>)<br>"+
-            "Max Fit Line: start at (<input type='text' id='line2data0x' name='line2data0x' value='"+allData[2].data[0].x+"'>, <input type='text' id='line2data0y' name='line2data0y' value='"+allData[2].data[0].y+"'>), End at: (<input type='text' id='line2data1x' name='line2data1x' value='"+allData[2].data[1].x+"'>, <input type='text' id='line2data1y' name='line2data1y' value='"+allData[2].data[1].y+"'>)<br>"+
-            "Min Fit Line: start at (<input type='text' id='line3data0x' name='line3data0x' value='"+allData[3].data[0].x+"'>, <input type='text' id='line3data0y' name='line3data0y' value='"+allData[3].data[0].y+"'>), End at: (<input type='text' id='line3data1x' name='line3data1x' value='"+allData[3].data[1].x+"'>, <input type='text' id='line3data1y' name='line3data1y' value='"+allData[3].data[1].y+"'>)<br>"+
-			"<button style='padding: 1rem' onclick='updateLabels()'>Apply</button><button style='padding: 1rem' onclick='closeModal()'>Cancel</button>";
-	}
     
 	//console.log(event);
 	//console.log("coord: (" + event.offsetX + ", " + event.offsetY + ")");
 	//console.log(window.scatterChart);
 	//console.log(pixel2Point(event.offsetX, event.offsetY));
+}
+
+function openGraphSettingsModal() {
+	var modal = document.getElementById("myModal");
+	var modalContent = document.getElementById("modalContent");
+
+	var line1 = allData[1] && allData[1].data ? allData[1] : {data: [{x: 0, y: 0}, {x: 0, y: 0}]};
+	var line2 = allData[2] && allData[2].data ? allData[2] : {data: [{x: 0, y: 0}, {x: 0, y: 0}]};
+	var line3 = allData[3] && allData[3].data ? allData[3] : {data: [{x: 0, y: 0}, {x: 0, y: 0}]};
+
+	modal.style.display = "block";
+	modalContent.innerHTML = "<h3>Graph Settings:</h3><h2><br><br>"+
+			"Graph Title: <input type='text' id='newGraphTitle' name='newGraphTitle' value='"+graphTitle+"'><br>"+
+			"Symbol for Independent Variable: <input type='text' id='newXSymbol' name='newXSymbol' value='"+graphXSymbol+"'><br>"+
+			"Symbol for Dependent Variable: <input type='text' id='newYSymbol' name='newYSymbol' value='"+graphYSymbol+"'><br>"+
+			"Horizontal Axis Label: <input type='text' id='newHLabel' name='newHLabel' value='"+graphXAxis+"'><br>"+
+			"Horizontal Axis Units: <input type='text' id='newHLabelUnits' name='newHLabelUnits' value='"+graphXAxisUnits+"'><br>"+
+			"Horizontal Axis: Min <input type='text' id='newHmin' name='newHmin' value='"+xMin+"'>, max <input type='text' id='newHmax' name='newHmax' value='"+xMax+"'>, step size <input type='text' id='newHstep' name='newHstep' value='"+xStep+"'><br>"+
+			"Vertical Axis Label: <input type='text' id='newVLabel' name='newVLabel' value='"+graphYAxis+"'><br> "+
+			"Vertical Axis Units: <input type='text' id='newVLabelUnits' name='newVLabelUnits' value='"+graphYAxisUnits+"'><br>"+
+			"Vertical Axis: Min <input type='text' id='newVmin' name='newVmin' value='"+yMin+"'>, max <input type='text' id='newVmax' name='newVmax' value='"+yMax+"'>, step size <input type='text' id='newVstep' name='newVstep' value='"+yStep+"'><br>"+
+			"Best Fit Line: start at (<input type='text' id='line1data0x' name='line1data0x' value='"+line1.data[0].x+"'>, <input type='text' id='line1data0y' name='line1data0y' value='"+line1.data[0].y+"'>), End at: (<input type='text' id='line1data1x' name='line1data1x' value='"+line1.data[1].x+"'>, <input type='text' id='line1data1y' name='line1data1y' value='"+line1.data[1].y+"'>)<br>"+
+			"Max Fit Line: start at (<input type='text' id='line2data0x' name='line2data0x' value='"+line2.data[0].x+"'>, <input type='text' id='line2data0y' name='line2data0y' value='"+line2.data[0].y+"'>), End at: (<input type='text' id='line2data1x' name='line2data1x' value='"+line2.data[1].x+"'>, <input type='text' id='line2data1y' name='line2data1y' value='"+line2.data[1].y+"'>)<br>"+
+			"Min Fit Line: start at (<input type='text' id='line3data0x' name='line3data0x' value='"+line3.data[0].x+"'>, <input type='text' id='line3data0y' name='line3data0y' value='"+line3.data[0].y+"'>), End at: (<input type='text' id='line3data1x' name='line3data1x' value='"+line3.data[1].x+"'>, <input type='text' id='line3data1y' name='line3data1y' value='"+line3.data[1].y+"'>)<br>"+
+			"<button style='padding: 1rem' onclick='updateLabels()'>Apply</button><button style='padding: 1rem' onclick='closeModal()'>Cancel</button>";
 }
 
 function up_handler(event) {
