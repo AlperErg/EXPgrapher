@@ -60,6 +60,7 @@ var yMinorGrid = 2;
 
 var xSigFigs = 1; //how many significant figures are present in the data. Calculated in the drawGraph() method, then constant until another table update is made
 var ySigFigs = 1;
+var graphSettingsLiveTimer = null;
 
 let last = +new Date(); //part of the timer for the line drag function
 var editLine = null; //this is to keep track of any lines that the user is dragging
@@ -590,10 +591,33 @@ function openGraphSettingsModal() {
 		+ "    </aside>"
 		+ "  </div>"
 		+ "  <div class='settings-actions'>"
-		+ "    <button type='button' class='settings-btn settings-btn-primary' onclick='updateLabels()'>Apply</button>"
+		+ "    <button type='button' class='settings-btn settings-btn-primary' onclick='updateLabels(true)'>Done</button>"
 		+ "    <button type='button' class='settings-btn settings-btn-secondary' onclick='closeModal()'>Cancel</button>"
 		+ "  </div>"
 		+ "</div>";
+
+	wireGraphSettingsLiveUpdates();
+}
+
+function wireGraphSettingsLiveUpdates() {
+	var modalContent = document.getElementById("modalContent");
+	if (!modalContent) { return; }
+
+	var inputs = modalContent.querySelectorAll("input");
+	for (var i = 0; i < inputs.length; i++) {
+		inputs[i].addEventListener("input", function() {
+			if (graphSettingsLiveTimer != null) {
+				clearTimeout(graphSettingsLiveTimer);
+			}
+			graphSettingsLiveTimer = setTimeout(function() {
+				updateLabels(false);
+			}, 120);
+		});
+
+		inputs[i].addEventListener("change", function() {
+			updateLabels(false);
+		});
+	}
 }
 
 function up_handler(event) {
@@ -779,7 +803,15 @@ function countSigFigs(n) {
 	return SigFigs;
 }
 
-function updateLabels() {
+function updateLabels(closeAfterApply) {
+	if (closeAfterApply === undefined) {
+		closeAfterApply = true;
+	}
+
+	if (!document.getElementById("newGraphTitle")) {
+		return;
+	}
+
 	//apply the labels from the modal window
 	graphTitle = document.getElementById("newGraphTitle").value;
 	graphXAxis = document.getElementById("newHLabel").value;
@@ -818,5 +850,7 @@ function updateLabels() {
 	//re-generate feedback;
 	window.evaluate();
 	//close the modal window
-	closeModal();
+	if (closeAfterApply) {
+		closeModal();
+	}
 }
