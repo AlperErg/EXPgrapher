@@ -230,7 +230,7 @@ function toNumber(n) {
 		//check for power
 		if (digit >= n.length) {
 			power = 0;
-		} else if ((new RegExp("[+-.0-9\(\)]")).test(n[digit])){
+		} else if ((new RegExp("[+-.0-9()]")).test(n[digit])){
 			if (n[digit] != "+" && n[digit] != "(" && n[digit] != ")") {
 				power += n[digit];
 			}
@@ -241,7 +241,7 @@ function toNumber(n) {
 		while (digit < n.length){
 			if ((new RegExp("[-.0-9]")).test(n[digit])){
 				power += n[digit];
-			} else if ((new RegExp("[,\(\)]")).test(n[digit])) {
+			} else if ((new RegExp("[,()]")).test(n[digit])) {
 				//do nothing
 			} else {
 				//not valid entry
