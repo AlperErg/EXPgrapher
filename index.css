@@ -200,7 +200,7 @@ footer {
     "table graph"
     "feedback feedback";
   gap: 1rem;
-  min-height: 72vh;
+  min-height: 80vh;
   margin: 0 1rem 1rem;
 }
 
@@ -222,11 +222,11 @@ footer {
   border-radius: 18px;
   box-shadow: var(--shadow);
   padding: 0.7rem;
-  min-height: 420px;
+  min-height: clamp(440px, 64vh, 900px);
 }
 
 .tableClass {
-  height: 56vh;
+  height: clamp(440px, 64vh, 900px);
 }
 
 .graphClass {
@@ -302,12 +302,195 @@ li {
   padding-right: 0.6em;
 }
 .graph-modal-inside {
-  font-size: 1.5rem;
-  input {
-    border-radius: 10px;
-    font-size: 0.8em;
-    padding: 5px;
-  }
+  font-size: 1rem;
+}
+
+.settings-shell {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  color: #e4eef4;
+}
+
+.settings-title-wrap h3 {
+  margin: 0;
+  font-family: 'Sora', 'Segoe UI', sans-serif;
+  font-size: 1.35rem;
+}
+
+.settings-title-wrap p {
+  margin: 0.4rem 0 0;
+  color: #b6cad8;
+  font-size: 0.95rem;
+}
+
+.settings-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 2.2fr) minmax(240px, 1fr);
+  gap: 0.9rem;
+}
+
+.settings-main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.settings-side {
+  display: flex;
+  align-items: stretch;
+}
+
+.settings-card {
+  background: #0f2f40;
+  border: 1px solid #2c5a70;
+  border-radius: 12px;
+  padding: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.settings-note-card {
+  background: #103449;
+}
+
+.settings-card h4 {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #f4f9fc;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.settings-card label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-size: 0.82rem;
+  color: #c2d4df;
+}
+
+.settings-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.28rem;
+}
+
+.settings-hint {
+  margin: 0;
+  color: #9cb3c1;
+  font-size: 0.76rem;
+  line-height: 1.45;
+}
+
+.settings-section-hint {
+  margin: -0.2rem 0 0.1rem;
+  color: #a9bfcd;
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+.settings-note-item {
+  margin: 0;
+  color: #c5d7e2;
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.settings-subgrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.6rem;
+}
+
+.axis-block,
+.axis-range-card,
+.line-block {
+  border: 1px solid #315e74;
+  border-radius: 10px;
+  padding: 0.65rem;
+  background: #12384b;
+}
+
+.axis-block h5,
+.axis-range-card h5,
+.line-block h5 {
+  margin: 0 0 0.45rem;
+  font-size: 0.82rem;
+  color: #e3eff6;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.axis-range-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.6rem;
+}
+
+.axis-range-card {
+  display: grid;
+  gap: 0.32rem;
+}
+
+.axis-range-card label,
+.line-input-grid label {
+  font-size: 0.75rem;
+  color: #bdd1dd;
+}
+
+.line-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.line-input-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.3rem 0.45rem;
+}
+
+.settings-card input {
+  width: 100%;
+  border: 1px solid #3e6f86;
+  border-radius: 8px;
+  background: #f6fbff;
+  color: #133244;
+  font-size: 0.92rem;
+  padding: 0.42rem 0.55rem;
+}
+
+.settings-card input:focus {
+  outline: none;
+  border-color: #0a9ecb;
+  box-shadow: 0 0 0 3px rgba(10, 158, 203, 0.22);
+}
+
+.settings-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.55rem;
+}
+
+.settings-btn {
+  border: 0;
+  border-radius: 8px;
+  padding: 0.58rem 0.95rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.settings-btn-primary {
+  background: #0a9ecb;
+  color: #ffffff;
+}
+
+.settings-btn-secondary {
+  background: #2f5164;
+  color: #d7e5ee;
 }
 
 @media (max-width: 992px) {
@@ -338,12 +521,29 @@ li {
   }
 
   .rightSec {
-    min-height: 360px;
+    min-height: 420px;
   }
 
   .tableClass {
-    height: 42vh;
+    height: 50vh;
     min-height: 280px;
+  }
+
+  .settings-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .settings-side {
+    order: -1;
+  }
+
+  .settings-subgrid,
+  .axis-range-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .line-input-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -372,11 +572,11 @@ li {
   }
 
   .rightSec {
-    min-height: 300px;
+    min-height: 360px;
   }
 
   .tableClass {
-    height: 46vh;
+    height: 52vh;
     min-height: 260px;
   }
 }

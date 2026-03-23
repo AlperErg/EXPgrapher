@@ -521,26 +521,79 @@ function down_handler(event) {
 function openGraphSettingsModal() {
 	var modal = document.getElementById("myModal");
 	var modalContent = document.getElementById("modalContent");
+	var esc = function(value) {
+		return String(value)
+			.replace(/&/g, "&amp;")
+			.replace(/</g, "&lt;")
+			.replace(/>/g, "&gt;")
+			.replace(/\"/g, "&quot;")
+			.replace(/'/g, "&#39;");
+	};
 
 	var line1 = allData[1] && allData[1].data ? allData[1] : {data: [{x: 0, y: 0}, {x: 0, y: 0}]};
 	var line2 = allData[2] && allData[2].data ? allData[2] : {data: [{x: 0, y: 0}, {x: 0, y: 0}]};
 	var line3 = allData[3] && allData[3].data ? allData[3] : {data: [{x: 0, y: 0}, {x: 0, y: 0}]};
 
 	modal.style.display = "block";
-	modalContent.innerHTML = "<h3>Graph Settings:</h3><h2><br><br>"+
-			"Graph Title: <input type='text' id='newGraphTitle' name='newGraphTitle' value='"+graphTitle+"'><br>"+
-			"Symbol for Independent Variable: <input type='text' id='newXSymbol' name='newXSymbol' value='"+graphXSymbol+"'><br>"+
-			"Symbol for Dependent Variable: <input type='text' id='newYSymbol' name='newYSymbol' value='"+graphYSymbol+"'><br>"+
-			"Horizontal Axis Label: <input type='text' id='newHLabel' name='newHLabel' value='"+graphXAxis+"'><br>"+
-			"Horizontal Axis Units: <input type='text' id='newHLabelUnits' name='newHLabelUnits' value='"+graphXAxisUnits+"'><br>"+
-			"Horizontal Axis: Min <input type='text' id='newHmin' name='newHmin' value='"+xMin+"'>, max <input type='text' id='newHmax' name='newHmax' value='"+xMax+"'>, step size <input type='text' id='newHstep' name='newHstep' value='"+xStep+"'><br>"+
-			"Vertical Axis Label: <input type='text' id='newVLabel' name='newVLabel' value='"+graphYAxis+"'><br> "+
-			"Vertical Axis Units: <input type='text' id='newVLabelUnits' name='newVLabelUnits' value='"+graphYAxisUnits+"'><br>"+
-			"Vertical Axis: Min <input type='text' id='newVmin' name='newVmin' value='"+yMin+"'>, max <input type='text' id='newVmax' name='newVmax' value='"+yMax+"'>, step size <input type='text' id='newVstep' name='newVstep' value='"+yStep+"'><br>"+
-			"Best Fit Line: start at (<input type='text' id='line1data0x' name='line1data0x' value='"+line1.data[0].x+"'>, <input type='text' id='line1data0y' name='line1data0y' value='"+line1.data[0].y+"'>), End at: (<input type='text' id='line1data1x' name='line1data1x' value='"+line1.data[1].x+"'>, <input type='text' id='line1data1y' name='line1data1y' value='"+line1.data[1].y+"'>)<br>"+
-			"Max Fit Line: start at (<input type='text' id='line2data0x' name='line2data0x' value='"+line2.data[0].x+"'>, <input type='text' id='line2data0y' name='line2data0y' value='"+line2.data[0].y+"'>), End at: (<input type='text' id='line2data1x' name='line2data1x' value='"+line2.data[1].x+"'>, <input type='text' id='line2data1y' name='line2data1y' value='"+line2.data[1].y+"'>)<br>"+
-			"Min Fit Line: start at (<input type='text' id='line3data0x' name='line3data0x' value='"+line3.data[0].x+"'>, <input type='text' id='line3data0y' name='line3data0y' value='"+line3.data[0].y+"'>), End at: (<input type='text' id='line3data1x' name='line3data1x' value='"+line3.data[1].x+"'>, <input type='text' id='line3data1y' name='line3data1y' value='"+line3.data[1].y+"'>)<br>"+
-			"<button style='padding: 1rem' onclick='updateLabels()'>Apply</button><button style='padding: 1rem' onclick='closeModal()'>Cancel</button>";
+	modalContent.innerHTML = ""
+		+ "<div class='settings-shell'>"
+		+ "  <div class='settings-title-wrap'>"
+		+ "    <h3>Graph Settings</h3>"
+		+ "    <p>Each field below includes a short explanation so you can tune the graph with confidence.</p>"
+		+ "  </div>"
+		+ "  <div class='settings-layout'>"
+		+ "    <div class='settings-main'>"
+		+ "      <section class='settings-card'>"
+		+ "        <h4>Names and Symbols</h4>"
+		+ "        <div class='settings-field'><label for='newGraphTitle'>Graph title</label><input type='text' id='newGraphTitle' name='newGraphTitle' value='" + esc(graphTitle) + "'><p class='settings-hint'>Displayed at the top of the chart area and in exports.</p></div>"
+		+ "        <div class='settings-field'><label for='newXSymbol'>Independent variable symbol</label><input type='text' id='newXSymbol' name='newXSymbol' value='" + esc(graphXSymbol) + "'><p class='settings-hint'>Used in best-fit equations, usually a short symbol like x.</p></div>"
+		+ "        <div class='settings-field'><label for='newYSymbol'>Dependent variable symbol</label><input type='text' id='newYSymbol' name='newYSymbol' value='" + esc(graphYSymbol) + "'><p class='settings-hint'>Used in best-fit equations, usually a short symbol like y.</p></div>"
+		+ "        <div class='settings-subgrid'>"
+		+ "          <div class='axis-block'>"
+		+ "            <h5>Horizontal axis text</h5>"
+		+ "            <div class='settings-field'><label for='newHLabel'>Axis label</label><input type='text' id='newHLabel' name='newHLabel' value='" + esc(graphXAxis) + "'></div>"
+		+ "            <div class='settings-field'><label for='newHLabelUnits'>Units</label><input type='text' id='newHLabelUnits' name='newHLabelUnits' value='" + esc(graphXAxisUnits) + "'></div>"
+		+ "          </div>"
+		+ "          <div class='axis-block'>"
+		+ "            <h5>Vertical axis text</h5>"
+		+ "            <div class='settings-field'><label for='newVLabel'>Axis label</label><input type='text' id='newVLabel' name='newVLabel' value='" + esc(graphYAxis) + "'></div>"
+		+ "            <div class='settings-field'><label for='newVLabelUnits'>Units</label><input type='text' id='newVLabelUnits' name='newVLabelUnits' value='" + esc(graphYAxisUnits) + "'></div>"
+		+ "          </div>"
+		+ "        </div>"
+		+ "      </section>"
+		+ "      <section class='settings-card'>"
+		+ "        <h4>Axis Ranges</h4>"
+		+ "        <p class='settings-section-hint'>Set minimum, maximum, and major step values for each axis. Use numbers only.</p>"
+		+ "        <div class='axis-range-grid'>"
+		+ "          <div class='axis-range-card'><h5>Horizontal (X)</h5><label for='newHmin'>Minimum</label><input type='text' id='newHmin' name='newHmin' value='" + esc(xMin) + "' placeholder='e.g. 0'><label for='newHmax'>Maximum</label><input type='text' id='newHmax' name='newHmax' value='" + esc(xMax) + "' placeholder='e.g. 100'><label for='newHstep'>Step size</label><input type='text' id='newHstep' name='newHstep' value='" + esc(xStep) + "' placeholder='e.g. 10'></div>"
+		+ "          <div class='axis-range-card'><h5>Vertical (Y)</h5><label for='newVmin'>Minimum</label><input type='text' id='newVmin' name='newVmin' value='" + esc(yMin) + "' placeholder='e.g. 0'><label for='newVmax'>Maximum</label><input type='text' id='newVmax' name='newVmax' value='" + esc(yMax) + "' placeholder='e.g. 100'><label for='newVstep'>Step size</label><input type='text' id='newVstep' name='newVstep' value='" + esc(yStep) + "' placeholder='e.g. 10'></div>"
+		+ "        </div>"
+		+ "      </section>"
+		+ "      <section class='settings-card'>"
+		+ "        <h4>Fit Line Endpoints</h4>"
+		+ "        <p class='settings-section-hint'>Each line is controlled by two points: start (x1, y1) and end (x2, y2).</p>"
+		+ "        <div class='line-stack'>"
+		+ "          <div class='line-block'><h5>Best fit line</h5><div class='line-input-grid'><label for='line1data0x'>Start X</label><input type='text' id='line1data0x' name='line1data0x' value='" + esc(line1.data[0].x) + "'><label for='line1data0y'>Start Y</label><input type='text' id='line1data0y' name='line1data0y' value='" + esc(line1.data[0].y) + "'><label for='line1data1x'>End X</label><input type='text' id='line1data1x' name='line1data1x' value='" + esc(line1.data[1].x) + "'><label for='line1data1y'>End Y</label><input type='text' id='line1data1y' name='line1data1y' value='" + esc(line1.data[1].y) + "'></div></div>"
+		+ "          <div class='line-block'><h5>Maximum fit line</h5><div class='line-input-grid'><label for='line2data0x'>Start X</label><input type='text' id='line2data0x' name='line2data0x' value='" + esc(line2.data[0].x) + "'><label for='line2data0y'>Start Y</label><input type='text' id='line2data0y' name='line2data0y' value='" + esc(line2.data[0].y) + "'><label for='line2data1x'>End X</label><input type='text' id='line2data1x' name='line2data1x' value='" + esc(line2.data[1].x) + "'><label for='line2data1y'>End Y</label><input type='text' id='line2data1y' name='line2data1y' value='" + esc(line2.data[1].y) + "'></div></div>"
+		+ "          <div class='line-block'><h5>Minimum fit line</h5><div class='line-input-grid'><label for='line3data0x'>Start X</label><input type='text' id='line3data0x' name='line3data0x' value='" + esc(line3.data[0].x) + "'><label for='line3data0y'>Start Y</label><input type='text' id='line3data0y' name='line3data0y' value='" + esc(line3.data[0].y) + "'><label for='line3data1x'>End X</label><input type='text' id='line3data1x' name='line3data1x' value='" + esc(line3.data[1].x) + "'><label for='line3data1y'>End Y</label><input type='text' id='line3data1y' name='line3data1y' value='" + esc(line3.data[1].y) + "'></div></div>"
+		+ "        </div>"
+		+ "      </section>"
+		+ "    </div>"
+		+ "    <aside class='settings-side'>"
+		+ "      <section class='settings-card settings-note-card'>"
+		+ "        <h4>Quick Guide</h4>"
+		+ "        <p class='settings-note-item'><strong>Labels:</strong> control how your graph is named and presented in reports.</p>"
+		+ "        <p class='settings-note-item'><strong>Axis ranges:</strong> use wider min/max for more context, tighter values for detail.</p>"
+		+ "        <p class='settings-note-item'><strong>Step size:</strong> smaller steps create denser ticks and grid spacing.</p>"
+		+ "        <p class='settings-note-item'><strong>Fit lines:</strong> move endpoints to test alternative best/max/min interpretations.</p>"
+		+ "      </section>"
+		+ "    </aside>"
+		+ "  </div>"
+		+ "  <div class='settings-actions'>"
+		+ "    <button type='button' class='settings-btn settings-btn-primary' onclick='updateLabels()'>Apply</button>"
+		+ "    <button type='button' class='settings-btn settings-btn-secondary' onclick='closeModal()'>Cancel</button>"
+		+ "  </div>"
+		+ "</div>";
 }
 
 function up_handler(event) {
