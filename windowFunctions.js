@@ -43,7 +43,7 @@ function saveBase64AsFile(base64, fileName) {
 //Reminder. This code and website linked below is licensed under CC BY-NC-SA 4.0 . Modify accordingly.
 function copyDoc() {
 	try {
-		var url = new URL("https://grapher.betterib.com");
+		var url = new URL("https://graph.ergune.dev");
 		//load the data item by item
 		url.searchParams.append("dataLength", window.dataset.length);
 		for (var copyRow = 0; copyRow < window.dataset.length; copyRow++) {

@@ -1,7 +1,7 @@
 function shareContent() {
     const graphLink = copyDoc();
     const data = {
-        title: "BetterIB EXPgrapher",
+        title: "EXPgrapher",
         text: "Link to a graph",
         url: graphLink, 
     };

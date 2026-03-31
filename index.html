@@ -4,7 +4,7 @@
  <head>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BetterIB EXPgrapher</title>
+    <title>EXPgrapher</title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link rel="stylesheet" href="node_modules/slickgrid/slick.grid.css" type="text/css"/>
@@ -119,13 +119,13 @@
     <!-- The footer -->
     <footer style="background-color: #1e1e1e; color: #FFFFFF; display: flex; align-items: center; padding: 20px 24px;">
       <div>
-        <a href="https://www.betterib.com" style="text-align:center; color: #FFFFFF; font-size: 1.5em; margin: 10px 0; text-decoration: none;">BetterIB | EXPgrapher</a>
+        <a href="https://graph.ergune.dev" style="text-align:center; color: #FFFFFF; font-size: 1.5em; margin: 10px 0; text-decoration: none;">EXPgrapher</a>
         <p style="color: gainsboro; margin-bottom: 0.1rem;">v6</p>
-        <p style="color: gainsboro; margin-bottom: 0.1rem;">Need help? Mail me: <a href="mailto:alper@betterib.com" style="color: gainsboro;">alper@betterib.com</a></p>
+        <p style="color: gainsboro; margin-bottom: 0.1rem;">Need help? Mail me: <a href="mailto:ma@ergune.dev" style="color: gainsboro;">ma@ergune.dev</a></p>
       </div>
       <div style="margin-left: auto;">
         <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/">
-          <a property="dct:title" rel="cc:attributionURL" href="http://graph.betterib.com" style="text-decoration: none;">EXPgrapher</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://github.com/AlperErg" style="text-decoration: none;">Alper Erg&uuml;ne</a> is licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block; text-decoration: none;">CC BY-NC-SA 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1"></a>
+          <a property="dct:title" rel="cc:attributionURL" href="http://graph.ergune.dev" style="text-decoration: none;">EXPgrapher</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://github.com/AlperErg" style="text-decoration: none;">Alper Erg&uuml;ne</a> is licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block; text-decoration: none;">CC BY-NC-SA 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1"></a>
         </p>
 
       </div>
@@ -152,59 +152,17 @@
 
     <!--Apple Web Share API-->
     <script src="webshare.js"></script>
-    <!--Web Analytics Tracker -->
-    <script type="text/javascript">
-      //<![CDATA[
-      var owa_baseUrl = 'https://stats.betterib.com/';
-      var owa_cmds = owa_cmds || [];
-      owa_cmds.push(['setSiteId', '9f5d8dcc0de773510c2c57ad0c2573ba']);
-      owa_cmds.push(['trackPageView']);
-      owa_cmds.push(['trackClicks']);
-      (function() {
-      var _owa = document.createElement('script'); _owa.type = 'text/javascript'; _owa.async = true;
-      owa_baseUrl = ('https:' == document.location.protocol ? window.owa_baseSecUrl || owa_baseUrl.replace(/http:/, 'https:') : owa_baseUrl );
-      _owa.src = owa_baseUrl + 'modules/base/dist/owa.tracker.js';
-      var _owa_s = document.getElementsByTagName('script')[0]; _owa_s.parentNode.insertBefore(_owa, _owa_s);
-      }());
-      //]]>
-    </script>
     <!-- JavaScript to control the welcome popup -->
     <script>
-      // Function to set a cookie
-      function setCookie(name, value, days) {
-          var expires = "";
-          if (days) {
-              var date = new Date();
-              date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-              expires = "; expires=" + date.toUTCString();
-          }
-          document.cookie = name + "=" + (value || "") + expires + "; path=/";
+      function shouldShowPopup() {
+        return localStorage.getItem("popupShown") !== "true";
       }
 
-      // Function to get a cookie by name
-      function getCookie(name) {
-          var nameEQ = name + "=";
-          var cookies = document.cookie.split(';');
-          for (const element of cookies) {
-              var cookie = element;
-              while (cookie.charAt(0) == ' ') {
-                  cookie = cookie.substring(1, cookie.length);
-              }
-              if (cookie.indexOf(nameEQ) == 0) {
-                  return cookie.substring(nameEQ.length, cookie.length);
-              }
-          }
-          return null;
-      }
-      // Function to check if the popup should be displayed
-      function shouldShowPopup() {
-          return getCookie("popupShown") !== "true";
-      }
-      // Function to hide the popup and set the "Do not show again" cookie
       function hidePopup() {
-          setCookie("popupShown", "true", 30); // Cookie expires after 30 days
-          $("#welcomeModal").modal("hide");
+        localStorage.setItem("popupShown", "true");
+        $("#welcomeModal").modal("hide");
       }
+
       // Show the popup if necessary
       $(document).ready(function () {
           if (shouldShowPopup()) {
