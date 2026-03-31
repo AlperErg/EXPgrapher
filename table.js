@@ -276,7 +276,7 @@ $(function () {
 
 	//fill in data from the URL if it exists
 	if (dataLength != null) {
-		var pasteRow = 0;
+		var pasteRow;
 		for (pasteRow = 0; pasteRow < dataLength; pasteRow++) {
 			var d = (data[pasteRow] = {});
 
@@ -287,7 +287,7 @@ $(function () {
 		}
 		//fill in the remaining blank rows
 		for (;pasteRow < 50; pasteRow++) {
-			var d = (data[pasteRow] = {});
+			data[pasteRow] = {};
 		}
 
 	} else {

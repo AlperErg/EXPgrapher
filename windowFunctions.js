@@ -63,7 +63,7 @@ function copyDoc() {
 
 		//add the trendlines:
 		for (var lineOrder = 1; lineOrder <= 3; lineOrder++) {
-			var line = allData[lineOrder];//allData[1] is the trendline, 2 and 3 are the max and min lines
+			var line = window.allData[lineOrder];//allData[1] is the trendline, 2 and 3 are the max and min lines
 			console.log(line);
 			url.searchParams.append("line"+lineOrder+"data0x", line.data[0].x);
 			url.searchParams.append("line"+lineOrder+"data0y", line.data[0].y);

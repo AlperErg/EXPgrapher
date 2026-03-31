@@ -108,7 +108,7 @@ function drawGraph() {
 	//also format the data for chart.js
 	xMax = xMin = yMax = yMin = null;
 
-	for (row = 0; row < window.grid.getDataLength(); row++) {
+	for (var row = 0; row < window.grid.getDataLength(); row++) {
 		var dataRow = window.grid.getDataItem(row);
 		var xd, xu, yd, yu;
 		if (dataRow[xData] != null) {
@@ -527,7 +527,7 @@ function openGraphSettingsModal() {
 			.replace(/&/g, "&amp;")
 			.replace(/</g, "&lt;")
 			.replace(/>/g, "&gt;")
-			.replace(/\"/g, "&quot;")
+			.replace(/"/g, "&quot;")
 			.replace(/'/g, "&#39;");
 	};
 

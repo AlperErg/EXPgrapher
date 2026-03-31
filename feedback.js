@@ -225,7 +225,6 @@ function evaluate() {
 	var ydPrecisions = [];
 	var msg = "The position of least significant digit of a measurement's uncertainty should match the position of the least significant digit of the measurement itself:";
 	for (var row = 0; row < dataset.length; row++) {
-		var error = false;
 		//get the precision of the measurments and their uncertainties
 		var xPrecision = String(dataset[row].litx);
 		if (xPrecision.includes("x")) {
@@ -288,7 +287,7 @@ function evaluate() {
 				} else {
 					yerrorCount2++;
 					if (roundingError == true) {inconsistentPrecisionMsg += " and";}
-					roudningError = true;
+					roundingError = true;
 					inconsistentPrecisionMsg += " measurement " + dataset[row].lity + " has precision that doesn't match the rest of the measurements of the same type"; 
 				}
 			}
@@ -586,7 +585,7 @@ function evaluate() {
 function modeAndOutliers(list) {
 	var mode = modeFind(list);
 	var outliers = [];
-	for (listi = 0; listi < list.length; listi++) {
+	for (var listi = 0; listi < list.length; listi++) {
 		if (list[listi] != mode) { outliers.push(listi);}
 	}
 	return {mode: mode, outliers: outliers};
