@@ -215,12 +215,14 @@ footer {
 .rightSec {
   grid-area: graph;
   min-width: 0;
+  min-height: 0;
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 18px;
   box-shadow: var(--shadow);
   padding: 0.7rem;
   height: clamp(440px, 64vh, 900px);
+  overflow: hidden;
 }
 
 .tableClass {
@@ -230,12 +232,17 @@ footer {
 .graphClass {
   height: 100%;
   min-height: 0;
+  overflow: hidden;
+  border-radius: 12px;
 }
 
 #graphCanvas {
   display: block;
   width: 100% !important;
   height: 100% !important;
+  max-width: 100%;
+  max-height: 100%;
+  box-sizing: border-box;
   background-color: #ffffff;
   border: 1px solid #c9d9e5 !important;
   border-radius: 12px;
