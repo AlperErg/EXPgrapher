@@ -66,6 +66,45 @@ let last = +new Date(); //part of the timer for the line drag function
 var editLine = null; //this is to keep track of any lines that the user is dragging
 // {line:line, intersection:intersection, order: 1 2 or 3}
 
+var graphDrawFramePending = false;
+var graphAndFeedbackFramePending = false;
+
+function onNextFrame(callback) {
+	if (typeof window.requestAnimationFrame === "function") {
+		window.requestAnimationFrame(callback);
+	} else {
+		setTimeout(callback, 16);
+	}
+}
+
+function scheduleGraphDraw() {
+	if (graphDrawFramePending) {
+		return;
+	}
+	graphDrawFramePending = true;
+	onNextFrame(function() {
+		graphDrawFramePending = false;
+		drawGraph();
+	});
+}
+
+function scheduleGraphAndFeedbackUpdate() {
+	if (graphAndFeedbackFramePending) {
+		return;
+	}
+	graphAndFeedbackFramePending = true;
+	onNextFrame(function() {
+		graphAndFeedbackFramePending = false;
+		drawGraph();
+		if (typeof window.evaluate === "function") {
+			window.evaluate();
+		}
+	});
+}
+
+window.scheduleGraphDraw = scheduleGraphDraw;
+window.scheduleGraphAndFeedbackUpdate = scheduleGraphAndFeedbackUpdate;
+
 (function() {
 	var graphCanvas = document.getElementById("graphCanvas");
 
@@ -77,7 +116,7 @@ var editLine = null; //this is to keep track of any lines that the user is dragg
          * Your drawings need to be inside this function otherwise they will be reset when 
          * you resize the browser window and the canvas goes will be cleared.
          */
-		drawGraph(); 
+		scheduleGraphDraw(); 
 	}
 	resizeCanvas();
 
@@ -845,10 +884,8 @@ function updateLabels(closeAfterApply) {
 	scaleData.yStep = document.getElementById("newVstep").value;
 	console.log(scaleData);
     
-	//redraw graph
-	window.drawGraph();
-	//re-generate feedback;
-	window.evaluate();
+	// Redraw and feedback generation are batched in one frame.
+	window.scheduleGraphAndFeedbackUpdate();
 	//close the modal window
 	if (closeAfterApply) {
 		closeModal();

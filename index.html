@@ -178,16 +178,55 @@
           script.defer = true;
           document.head.appendChild(script);
       });
-        function startup() {
-          // table.js initializes grid on document ready; wait for it before drawing.
-          if (!window.grid || typeof window.grid.getColumns !== "function") {
-            setTimeout(startup, 50);
+        function queueStartupRetry() {
+          if (window.__expgrapherStartupDone || window.__expgrapherStartupRetryQueued) {
             return;
           }
-          drawGraph();
-          evaluate();
+          window.__expgrapherStartupRetryQueued = true;
+          if (typeof window.requestAnimationFrame === "function") {
+            window.requestAnimationFrame(function () {
+              window.__expgrapherStartupRetryQueued = false;
+              startup();
+            });
+          } else {
+            setTimeout(function () {
+              window.__expgrapherStartupRetryQueued = false;
+              startup();
+            }, 16);
+          }
+        }
+
+        function startup() {
+          if (window.__expgrapherStartupDone) {
+            return;
+          }
+
+          window.__expgrapherStartupAttempts = (window.__expgrapherStartupAttempts || 0) + 1;
+
+          if (!window.grid || typeof window.grid.getColumns !== "function") {
+            if (window.__expgrapherStartupAttempts < 240) {
+              queueStartupRetry();
+            }
+            return;
+          }
+
+          if (typeof window.drawGraph !== "function" || typeof window.evaluate !== "function") {
+            if (window.__expgrapherStartupAttempts < 240) {
+              queueStartupRetry();
+            }
+            return;
+          }
+
+          window.__expgrapherStartupDone = true;
+          if (typeof window.scheduleGraphAndFeedbackUpdate === "function") {
+            window.scheduleGraphAndFeedbackUpdate();
+          } else {
+            drawGraph();
+            evaluate();
+          }
       }
-      window.onload = startup; 
+      window.addEventListener("load", startup);
+      window.addEventListener("expgrapher:grid-ready", startup);
     </script>
   </body>
 </html>

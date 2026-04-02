@@ -26,6 +26,19 @@ var data = [];
 var commandQueue = [];
 var commandCtr = 0;
 
+function refreshGraphAndFeedback() {
+	if (typeof window.scheduleGraphAndFeedbackUpdate === "function") {
+		window.scheduleGraphAndFeedbackUpdate();
+		return;
+	}
+	if (typeof window.drawGraph === "function") {
+		window.drawGraph();
+	}
+	if (typeof window.evaluate === "function") {
+		window.evaluate();
+	}
+}
+
 
 
 //undo/redo stuff
@@ -96,10 +109,8 @@ $(document).keydown(function(e)
 				grid.render();  
       
 
-				//redraw graph
-				window.drawGraph();
-				//re-generate feedback;
-				window.evaluate(); 
+				// Redraw once per frame to avoid layout thrashing after grid writes.
+				refreshGraphAndFeedback();
       
 			}   
 		}
@@ -435,11 +446,8 @@ $(function () {
       }
       */
 
-		//redraw graph
-		window.drawGraph();
-        
-		//re-generate feedback;
-		window.evaluate();
+		// Redraw once per frame to avoid layout thrashing after grid writes.
+		refreshGraphAndFeedback();
 	});
 
 	//this de-selected cells when the focus is lost to re-enable drag-selection of the table
@@ -497,6 +505,14 @@ $(function () {
 		grid.updateRowCount();
 		grid.render();
 	});
+
+	if (typeof window.Event === "function") {
+		window.dispatchEvent(new Event("expgrapher:grid-ready"));
+	} else {
+		var readyEvent = document.createEvent("Event");
+		readyEvent.initEvent("expgrapher:grid-ready", true, true);
+		window.dispatchEvent(readyEvent);
+	}
     
     
 });
