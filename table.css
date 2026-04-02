@@ -359,6 +359,6 @@ input.editor-text:focus {
   #myGrid .slick-cell {
     --cell-pad-x: 8px;
     padding: 0 var(--cell-pad-x);
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 }
