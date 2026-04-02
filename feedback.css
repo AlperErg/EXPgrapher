@@ -15,8 +15,8 @@ div.feedbackBox {
 
 div.feedbackHeading {
    text-align: left;
-   font-family: 'Sora', 'Segoe UI', sans-serif;
-   font-size: clamp(1rem, 1.8vw, 1.25rem);
+   font-family: Arial, Helvetica, sans-serif;
+   font-size: clamp(1.12rem, 2vw, 1.4rem);
    font-weight: 700;
    letter-spacing: 0.02em;
    color: #143447;
@@ -36,7 +36,7 @@ article.feedbackItem {
    margin: 0;
    padding: 0.7rem 0.85rem;
    line-height: 1.45;
-   font-size: 0.98rem;
+   font-size: 1.08rem;
    color: #223644;
    background: #f8fbfd;
    border: 1px solid #dce8ef;
@@ -68,6 +68,6 @@ article.feedbackItemSuccess {
    }
 
    article.feedbackItem {
-      font-size: 0.95rem;
+      font-size: 1rem;
    }
 }

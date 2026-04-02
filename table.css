@@ -278,8 +278,8 @@ input.editor-checkbox {
   color: #ffffff;
   background: #0f4056 !important;
   background-image: none !important;
-  font-family: 'Sora', 'Segoe UI', sans-serif;
-  font-size: 0.84rem;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.98rem;
   font-weight: 600;
   letter-spacing: 0.01em;
 }
@@ -312,8 +312,8 @@ input.editor-checkbox {
   border-right: 1px solid #e7eef4;
   border-bottom: 1px solid #e7eef4;
   color: #1c2f3b;
-  font-family: 'Manrope', 'Segoe UI', sans-serif;
-  font-size: 0.95rem;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.05rem;
 }
 
 #myGrid .slick-cell:last-child {

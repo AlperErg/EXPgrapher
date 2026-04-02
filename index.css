@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap');
-
 :root {
   --bg-0: #f4f8fb;
   --bg-1: #e8f0f5;
@@ -116,7 +114,7 @@ body {
     radial-gradient(circle at 10% 0%, #e7f4ff 0%, rgba(231, 244, 255, 0) 45%),
     radial-gradient(circle at 90% 100%, #fff0df 0%, rgba(255, 240, 223, 0) 42%),
     linear-gradient(145deg, var(--bg-0), var(--bg-1));
-  font-family: 'Manrope', 'Segoe UI', sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 /*buttons*/
@@ -141,7 +139,7 @@ header {
 
 header h1 {
   margin: 0;
-  font-family: 'Sora', 'Segoe UI', sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: clamp(1.2rem, 2.2vw, 1.9rem);
   letter-spacing: 0.02em;
 }
@@ -290,7 +288,7 @@ footer {
 li {
   font-size: 1rem;
   margin-top: 20px;
-  font-family: 'Manrope', 'Segoe UI', sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   display: flex;
   flex: 1;
   justify-content: left;
@@ -301,6 +299,20 @@ li {
   font-size: 1.8em;
   padding-right: 0.6em;
 }
+
+#welcomeModal .modal-body li {
+  font-size: 1.12rem;
+  line-height: 1.45;
+}
+
+#welcomeModal .modal-footer .form-check-label {
+  font-size: 1.02rem;
+}
+
+#welcomeModal .modal-footer .btn {
+  font-size: 1rem;
+}
+
 .graph-modal-inside {
   font-size: 1rem;
 }
@@ -314,7 +326,7 @@ li {
 
 .settings-title-wrap h3 {
   margin: 0;
-  font-family: 'Sora', 'Segoe UI', sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 1.35rem;
 }
 
