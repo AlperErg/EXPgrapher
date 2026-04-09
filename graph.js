@@ -137,11 +137,11 @@ function drawGraph() {
 		allData = [];
 	}
     
-	//get the header names
-	var xData = window.grid.getColumns()[0]["name"];
-	var xUnc = window.grid.getColumns()[1]["name"];
-	var yData = window.grid.getColumns()[2]["name"];
-	var yUnc = window.grid.getColumns()[3]["name"];
+	//get the field names
+	var xData = window.grid.getColumns()[0]["field"];
+	var xUnc = window.grid.getColumns()[1]["field"];
+	var yData = window.grid.getColumns()[2]["field"];
+	var yUnc = window.grid.getColumns()[3]["field"];
 
 	//get the domain and range
 	//also format the data for chart.js

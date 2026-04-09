@@ -17,11 +17,11 @@ function evaluate() {
 	//compile messages
 	var feedback = [];
 
-	//get the header names
-	var xData = window.grid.getColumns()[0]["name"];
-	var xUnc = window.grid.getColumns()[1]["name"];
-	var yData = window.grid.getColumns()[2]["name"];
-	var yUnc = window.grid.getColumns()[3]["name"];
+	//get the field names
+	var xData = window.grid.getColumns()[0]["field"];
+	var xUnc = window.grid.getColumns()[1]["field"];
+	var yData = window.grid.getColumns()[2]["field"];
+	var yUnc = window.grid.getColumns()[3]["field"];
 
 	//collect, format, and count the data
 	var dataCount = 0;

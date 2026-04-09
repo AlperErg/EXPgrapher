@@ -136,10 +136,10 @@ var pluginOptions = {
 
 
 var columns = [
-	{id: "XData", name: "X Data", field: "X Data", width: 120, cssClass: "cell-title", editor: Slick.Editors.Text},
-	{id: "XUncertainty", name: "X Uncertainty", field: "X Uncertainty", width: 120, cssClass: "cell-title", editor: Slick.Editors.Text},
-	{id: "YData", name: "Y Data", field: "Y Data", width: 120, cssClass: "cell-title", editor: Slick.Editors.Text},
-	{id: "YUncertainty", name: "Y Uncertainty", field: "Y Uncertainty", width: 120, cssClass: "cell-title", editor: Slick.Editors.Text},
+	{id: "XData", name: "X data", field: "X Data", width: 120, cssClass: "cell-title", editor: Slick.Editors.Text},
+	{id: "XUncertainty", name: "\u0394X <span class=\"header-help\" tabindex=\"0\" data-bs-toggle=\"tooltip\" data-bs-placement=\"bottom\" data-bs-title=\"Enter the absolute uncertainty of your X data\">?</span>", field: "X Uncertainty", width: 120, cssClass: "cell-title", editor: Slick.Editors.Text},
+	{id: "YData", name: "Y data", field: "Y Data", width: 120, cssClass: "cell-title", editor: Slick.Editors.Text},
+	{id: "YUncertainty", name: "\u0394Y <span class=\"header-help\" tabindex=\"0\" data-bs-toggle=\"tooltip\" data-bs-placement=\"bottom\" data-bs-title=\"Enter the absolute uncertainty of your Y data\">?</span>", field: "Y Uncertainty", width: 120, cssClass: "cell-title", editor: Slick.Editors.Text},
 ];
 
 var options = {
@@ -504,6 +504,10 @@ $(function () {
 		data.push(item);
 		grid.updateRowCount();
 		grid.render();
+	});
+
+	document.querySelectorAll("#myGrid .header-help[data-bs-toggle='tooltip']").forEach(function(el) {
+		new bootstrap.Tooltip(el, { trigger: 'hover focus' });
 	});
 
 	if (typeof window.Event === "function") {

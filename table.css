@@ -282,10 +282,17 @@ input.editor-checkbox {
   font-size: 0.98rem;
   font-weight: 600;
   letter-spacing: 0.01em;
+  overflow: visible !important;
+  text-overflow: clip !important;
 }
 
 #myGrid .slick-header-column:last-child {
   border-right: 0;
+}
+
+#myGrid .slick-column-name {
+  overflow: visible;
+  text-overflow: clip;
 }
 
 #myGrid .slick-viewport {
@@ -346,6 +353,26 @@ input.editor-text:focus {
 
 #myGrid .slick-cell.copied {
   background-color: rgba(10, 126, 161, 0.2);
+}
+
+/* Header help icon with tooltip */
+.header-help {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  cursor: default;
+  position: relative;
+  vertical-align: middle;
+  margin-left: 4px;
+  line-height: 1;
+  user-select: none;
 }
 
 @media (max-width: 768px) {
