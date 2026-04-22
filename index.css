@@ -110,10 +110,7 @@ body {
   min-height: 100vh;
   margin: 0;
   color: var(--ink);
-  background:
-    radial-gradient(circle at 10% 0%, #e7f4ff 0%, rgba(231, 244, 255, 0) 45%),
-    radial-gradient(circle at 90% 100%, #fff0df 0%, rgba(255, 240, 223, 0) 42%),
-    linear-gradient(145deg, var(--bg-0), var(--bg-1));
+  background: var(--bg-0);
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -181,13 +178,100 @@ header .btn:focus {
 
 footer {
   color: #dce8ef;
-  background: linear-gradient(120deg, #102633, #1f3947);
+  background: #1b3544;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
+  gap: 1rem 1.5rem;
   margin: 1rem;
   padding: 1.25rem 1.5rem;
   border-radius: 16px;
   box-shadow: var(--shadow);
+}
+
+footer .footer-brand {
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+footer .footer-brand-title {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin: 0 0 0.35rem;
+}
+
+footer .footer-brand a.footer-title {
+  color: #ffffff;
+  font-size: 1.5em;
+  text-decoration: none;
+}
+
+footer .footer-version {
+  color: gainsboro;
+  font-size: 0.85em;
+}
+
+footer .footer-brand p {
+  color: gainsboro;
+  margin: 0 0 0.1rem;
+  overflow-wrap: anywhere;
+}
+
+footer .footer-brand a {
+  color: gainsboro;
+}
+
+footer .footer-license {
+  flex: 0 1 auto;
+  min-width: 0;
+  margin-left: auto;
+  text-align: right;
+}
+
+footer .footer-license p {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+footer .footer-license a {
+  color: #dce8ef;
+  text-decoration: none;
+}
+
+footer .footer-license .cc-badge {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 3px;
+}
+
+footer .footer-license .cc-badge img {
+  height: 22px;
+  vertical-align: text-bottom;
+}
+
+@media (max-width: 576px) {
+  footer {
+    padding: 0.85rem 1rem;
+    gap: 0.5rem 1rem;
+    font-size: 0.85em;
+  }
+  footer .footer-brand a.footer-title {
+    font-size: 1.15em;
+  }
+  footer .footer-license {
+    text-align: left;
+    margin-left: 0;
+    flex-basis: 100%;
+  }
+  footer .footer-license .cc-badge {
+    justify-content: flex-start;
+  }
+  footer .footer-license .cc-badge img {
+    height: 18px;
+  }
 }
 /*graph elements*/
 .content {
