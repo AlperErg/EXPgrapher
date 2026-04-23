@@ -13,11 +13,6 @@ var incommingScaleData = false; //a flag for when there is user-defined scaling 
 
 
 //adapted from: https://6pac.github.io/SlickGrid/examples/example-excel-compatible-spreadsheet.html
-//also required: comment out this line from init in slick.cellexternalcopymanager.js
-/*cellSelectionModel.onSelectedRangesChanged.subscribe(function(e, args){
-        _grid.focus();
-      });
-      */ 
 
 var resizer;
 var grid;
@@ -139,7 +134,7 @@ var columns = [
 	{id: "XData", name: "X data", field: "X Data", width: 120, cssClass: "cell-title", editor: Slick.Editors.Text},
 	{id: "XUncertainty", name: "\u0394X <span class=\"header-help\" tabindex=\"0\" data-bs-toggle=\"tooltip\" data-bs-placement=\"bottom\" data-bs-title=\"Enter the absolute uncertainty of your X data\">?</span>", field: "X Uncertainty", width: 120, cssClass: "cell-title", editor: Slick.Editors.Text},
 	{id: "YData", name: "Y data", field: "Y Data", width: 120, cssClass: "cell-title", editor: Slick.Editors.Text},
-	{id: "YUncertainty", name: "\u0394Y <span class=\"header-help\" tabindex=\"0\" data-bs-toggle=\"tooltip\" data-bs-placement=\"bottom\" data-bs-title=\"Enter the absolute uncertainty of your Y data\">?</span>", field: "Y Uncertainty", width: 120, cssClass: "cell-title", editor: Slick.Editors.Text},
+	{id: "YUncertainty", name: "\u0394Y <span class=\"header-help\" tabindex=\"0\" data-bs-toggle=\"tooltip\" data-bs-placement=\"bottom\" data-bs-title=\"Enter the absolute uncertainty of your Y data\">?</span><button type=\"button\" class=\"header-copy-btn\" title=\"Copy table\" onmousedown=\"event.stopPropagation();\" onclick=\"event.stopPropagation(); copyTable();\"><i class=\"bi bi-clipboard\"></i></button>", field: "Y Uncertainty", width: 120, headerCssClass: "y-uncertainty-header", cssClass: "cell-title", editor: Slick.Editors.Text},
 ];
 
 var options = {
@@ -434,18 +429,6 @@ $(function () {
 			}
 		}
 
-
-		/* console.log("number:");
-      console.log(toNumber(dataToValidate));
-
-      if (isNaN(dataToValidate) || dataToValidate == "") {
-        //if the new entry is not a number, wipe it
-        data[row][window.grid.getColumns()[col]["name"]] = null;
-        grid.invalidateAllRows();
-        grid.render();
-      }
-      */
-
 		// Redraw once per frame to avoid layout thrashing after grid writes.
 		refreshGraphAndFeedback();
 	});
@@ -456,13 +439,7 @@ $(function () {
 			var activeRow = grid.getActiveCell().row;
 			var activeCell = grid.getActiveCell().cell;
 			grid.gotoCell(activeRow, activeCell, false);
-			//console.log(data[activeRow][window.grid.getColumns()[activeCell]["name"]]);
 			grid.resetActiveCell();
-			//grid.setSelectedRows([]);
-			//grid.invalidateAllRows();
-			//grid.setSelectionModel(new Slick.CellSelectionModel());
-			//grid.setSelectedRows([]);
-			//grid.render();  
 		}
 	});
 

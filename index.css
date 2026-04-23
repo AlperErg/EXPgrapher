@@ -58,26 +58,6 @@
     from {bottom: 30px; opacity: 1;}
     to {bottom: 0; opacity: 0;}
   }
-/*Circular Buttons*/
-.btn-circle.btn-xl {
-  width: 70px;
-  height: 70px;
-  padding: 10px 16px;
-  border-radius: 35px;
-  font-size: 24px;
-  line-height: 1.33;
-}
-
-.btn-circle {
-  width: 30px;
-  height: 30px;
-  padding: 6px 0px;
-  border-radius: 15px;
-  text-align: center;
-  font-size: 12px;
-  line-height: 1.42857;
-}
-
 /* Links */
 a {
   color: #3498db;
@@ -332,35 +312,6 @@ footer .footer-license .cc-badge img {
   border-radius: 12px;
 }
 
-.coffeecontainer {
-  min-height: 20%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(120deg, #194760, #2a6984);
-  padding: 1em;
-  margin: 1em;
-  border-radius: 1.2rem;
-  box-shadow: var(--shadow);
-}
-.coffee {
-  width: 100%;
-  max-width: 800px; /* Optional: Set a maximum width for the content */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 1vh;
-  margin-bottom: 1vh;
-}
-/* Custom CSS for the modal */
-.custom-modal {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-}
-
 .modal-content {
     background-color: #143447;
     border-radius: 15px;
@@ -377,9 +328,6 @@ footer .footer-license .cc-badge img {
   border: 1px solid #2b556a;
   margin: 10vh auto 0;
   width: min(900px, 92vw);
-}
-.modal-header {
-    border: none; /* Remove the header border */
 }
 li {
   font-size: 1rem;
@@ -667,7 +615,6 @@ li {
 
   header,
   .content,
-  .coffeecontainer,
   footer {
     margin-left: 0.65rem;
     margin-right: 0.65rem;

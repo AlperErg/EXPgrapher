@@ -13,40 +13,7 @@ var yMin = null;
 var yStep = null;
 var dataToGraph = [];
 var uncToGraph = [];
-//this is an array of all things to chart. The data, it's error bars, the trendline, and the max and min slopes
 var allData = [];
-/* it is of this format:
-
-        [
-                {
-                    label: 'Scatter Dataset',
-                    fill:false,
-                    showLine: false,
-                    data: dataToGraph
-                },
-                {
-                    label: 'trendline',
-                    data: [{x:0, y:0},{x:20, y:20}],
-                    fill: false,
-                    radius: 0,
-                    backgroundColor: "rgba(0,0,0,0.1)"
-                }
-        ]
-
-and consists of the following datasets:
-
-        the data to graph
-        the trendline
-        the max trendline
-        the min trendline
-        the error bars for each data point consisting of:
-            the vertical line
-            the top bar of the vertical line
-            the bottom bar of the vertical line
-            the horizonal line
-            the left bar of the horizontal line
-            the right bar of the horizontal line
-*/
 
 var xPixelBuffer = null;
 var yPixelBuffer = null;
@@ -64,7 +31,6 @@ var graphSettingsLiveTimer = null;
 
 let last = +new Date(); //part of the timer for the line drag function
 var editLine = null; //this is to keep track of any lines that the user is dragging
-// {line:line, intersection:intersection, order: 1 2 or 3}
 
 var graphDrawFramePending = false;
 var graphAndFeedbackFramePending = false;
@@ -247,28 +213,6 @@ function drawGraph() {
 	xUnit2Pixel = xPixelWidth / Math.abs(xMax - xMin);
 	yUnit2Pixel = yPixelHeight / Math.abs(yMax - yMin);
 
-	// //paint the canvas white
-
-	/*draws the minor gridlines
-    for (var xpos = xMin + xMinorGrid ; xpos <= xMax - xMinorGrid ; xpos += xMinorGrid) {
-        ctx.beginPath();
-        var pt1 = point2Pixel(xpos, yMax);
-        ctx.moveTo(pt1.xPixel, pt1.yPixel);
-        var pt2 = point2Pixel(xpos, yMin);
-        ctx.lineTo(pt2.xPixel, pt2.yPixel);
-        ctx.strokeStyle = '#E0E0E0';
-        ctx.stroke();
-    }
-    for (var ypos = yMin + yMinorGrid ; ypos <= yMax - yMinorGrid ; ypos += yMinorGrid) {
-        ctx.beginPath();
-        var pt1 = point2Pixel(xMax, ypos);
-        ctx.moveTo(pt1.xPixel, pt1.yPixel);
-        var pt2 = point2Pixel(xMin, ypos);
-        ctx.lineTo(pt2.xPixel, pt2.yPixel);
-        ctx.strokeStyle = '#E0E0E0';
-        ctx.stroke();
-    }*/
-
 	//build the dataset for graphing
 	//compute the significant figures (used for reporting trendlines)
 	xSigFigs = 0;
@@ -307,14 +251,6 @@ function drawGraph() {
 		var minSlope = slope;
 		var minIntercept = intercept;
 		var minFails = evaluateLine(minSlope, minIntercept);
-		//console.log("trend: y = " + maxSlope + "x + " + maxIntercept + " with fails: " + maxFails);   
-        
-		//todo: the max/min slopes don't handle some corner cases, such as:
-		//10, 30
-		//20, 60
-		//30, 90
-		//40, 120
-		//8, 150
 
 		for (var coord1 = 0; coord1 < dataToGraph.length - 1; coord1++) {
 			for (var dX1 = -1;dX1 <= 1; dX1 += 2)
@@ -353,21 +289,10 @@ function drawGraph() {
 				}
 			}
 		}
-		//console.log("max: y = " + maxSlope + "x + " + maxIntercept + " with fails: " + maxFails);  
-		//console.log("min: y = " + minSlope + "x + " + minIntercept + " with fails: " + minFails);   
-        
 		allData.push({label:"Linear Regression:  "+graphYSymbol+" = " + Number.parseFloat(slope).toPrecision(Math.max(xSigFigs,ySigFigs)) + graphXSymbol+" + " + Number.parseFloat(intercept).toPrecision(Math.max(xSigFigs,ySigFigs)), data: [{x:xMin, y: slope*xMin+intercept},{x: xMax, y: slope*xMax + intercept}], fill: false, radius: 0, borderColor: "rgba(0,0,0,255)", borderWidth: 1, userMade: false});
 		allData.push({label:"Maximum Linear Fit:  "+graphYSymbol+" = " + Number.parseFloat(maxSlope).toPrecision(Math.max(xSigFigs,ySigFigs)) + graphXSymbol+" + " + Number.parseFloat(maxIntercept).toPrecision(Math.max(xSigFigs,ySigFigs)),data: [{x:xMin, y: maxSlope*xMin+maxIntercept},{x: xMax, y: maxSlope*xMax + maxIntercept}], fill: false, radius: 0, borderColor: "rgba(255,100,100,255)", borderWidth: 1, userMade: false});
 		allData.push({label:"Minimum Linear Fit:  "+graphYSymbol+" = " + Number.parseFloat(minSlope).toPrecision(Math.max(xSigFigs,ySigFigs)) + graphXSymbol+" + " + Number.parseFloat(minIntercept).toPrecision(Math.max(xSigFigs,ySigFigs)),data: [{x:xMin, y: minSlope*xMin+minIntercept},{x: xMax, y: minSlope*xMax + minIntercept}], fill: false, radius: 0, borderColor: "rgba(100,100,255,255)", borderWidth: 1, userMade: false});
     
-		//extension to origin can push trendlines outside the scale of the graph. adjust:
-		/*if (intercept < yMin) {yMin = intercept;}
-        if (maxIntercept < yMin) {yMin = maxIntercept;}
-        if (minIntercept < yMin) {yMin = minIntercept;}
-        if (intercept > yMax) {yMax = intercept;}
-        if (maxIntercept > yMax) {yMax = maxIntercept;}
-        if (minIntercept > yMax) {yMax = minIntercept;}*/
-        
 		//overwrite with incomming data if it exists:
 		if (incommingData == true) {
 			incommingData = false;
@@ -404,8 +329,6 @@ function drawGraph() {
 		allData.push({label: "NAR" + coordi, data: [{x:Number(dataToGraph[coordi].x) + Number(uncToGraph[coordi].x), y: Number(dataToGraph[coordi].y) + yNotch},{x:Number(dataToGraph[coordi].x) + Number(uncToGraph[coordi].x), y: Number(dataToGraph[coordi].y) - yNotch}], fill: false, radius: 0, borderColor: "rgba(100,100,100,255)", borderWidth: 1});
 	}
 
-	//draw the data
-	//console.log(dataToGraph);
 	graphCanvas.style.backgroundColor = "rgba(255,255,255,255)";
 	makeGraph();
 	graphCanvas.onpointerdown = down_handler;
@@ -455,31 +378,22 @@ function makeGraph() {
 					}  
 				}]
 			},
-			//events: ['click', 'mousemove'],
-			//onClick: clickEvt,
-			//onHover: hoverEvt,
-			//scrub unneeded labels from the legend
 			legend: {
 				labels: {
-					//Change the font size of some graph elements here, except for the title and x/y axis labels.
 					fontSize: 14,
 					filter: function(item, chart) {
-						// Logic to remove a particular legend item goes here
 						return item.text == null || !item.text.includes("NA");
 					}
 				}
 			},
-			// Boolean - whether or not the chart should be responsive and resize when the browser does.
 			responsive: true,
-			// Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
 			maintainAspectRatio: false,
 			animation: {
-				duration: 0 // general animation time
+				duration: 0
 			},
 			hover: {
-				animationDuration: 0 // duration of animations when hovering an item
+				animationDuration: 0
 			},
-			//responsiveAnimationDuration: 0 // animation duration after a resize
 		}
 	});
 }
@@ -544,18 +458,11 @@ function down_handler(event) {
 		var line = allData[lineOrder];//allData[1] is the trendline, 2 and 3 are the max and min lines
 		var intersection = intersectsLine(location, line); 
 		if (intersection.intersects == true) {
-			//grab the line
-			console.log("grab the line");
 			line.userMade = true;
 			editLine = {line: line, intersection: intersection, order: lineOrder, mouseLocation: {x: event.offsetX, y: event.offsetY}};
 			break;
 		}
 	}
-    
-	//console.log(event);
-	//console.log("coord: (" + event.offsetX + ", " + event.offsetY + ")");
-	//console.log(window.scatterChart);
-	//console.log(pixel2Point(event.offsetX, event.offsetY));
 }
 
 function openGraphSettingsModal() {
@@ -626,6 +533,9 @@ function openGraphSettingsModal() {
 		+ "        <p class='settings-note-item'><strong>Axis ranges:</strong> use wider min/max for more context, tighter values for detail.</p>"
 		+ "        <p class='settings-note-item'><strong>Step size:</strong> smaller steps create denser ticks and grid spacing.</p>"
 		+ "        <p class='settings-note-item'><strong>Fit lines:</strong> move endpoints to test alternative best/max/min interpretations.</p>"
+		+ "        <h4>Redraw Graph</h4>"
+		+ "        <p class='settings-note-item'>Use this if you want to refresh the graph manually.</p>"
+		+ "        <button type='button' class='settings-btn settings-btn-secondary' onclick='startup()'>Redraw graph</button>"
 		+ "      </section>"
 		+ "    </aside>"
 		+ "  </div>"
@@ -661,9 +571,6 @@ function wireGraphSettingsLiveUpdates() {
 
 function up_handler(event) {
 	if (editLine != null) {
-		//moveLine(event);
-		console.log(editLine);
-
 		editLine = null;
 		window.scatterChart.update();
 		window.evaluate();
@@ -671,12 +578,10 @@ function up_handler(event) {
 }
 
 
-//todo: replace the move event trigger with a call in a loop on a timer that cancels when the mouse is lifted so that you can hold to pull the line outside borders
 function move_handler(event) {
 	const now = +new Date();
-	if (now - last > 50) { // milliseconds
+	if (now - last > 50) {
 		last = now;
-		console.log("moved");
 		if (editLine != null) {
 			if (event.offsetX != editLine.mouseLocation.x || event.offsetY != editLine.mouseLocation.y) {
 				moveLine(event);
@@ -691,31 +596,20 @@ function moveLine(event) {
 
 	var newPoint = pixel2Point(event.offsetX, event.offsetY);
 
-	//find which point to move:
-	//console.log(editLine);
 	var targetEndpoint;
-	//console.log(Math.abs(editLine.line.data[0].x-editLine.intersection.grabPoint.x));
-	//console.log(Math.abs(editLine.line.data[1].x-editLine.intersection.grabPoint.x));
 	if (Math.abs(editLine.line.data[0].x-editLine.intersection.grabPoint.x) < Math.abs(editLine.line.data[1].x-editLine.intersection.grabPoint.x)) {
-		//move point 0
 		targetEndpoint = editLine.line.data[0];
 	} else {
-		//move point 1
 		targetEndpoint = editLine.line.data[1];
 	}
-	//console.log(targetEndpoint);
-    
-	//compute the drag vector - graph distance the mouse was dragged:
+
 	var dragVector = {x: newPoint.x - editLine.intersection.grabPoint.x, y: newPoint.y - editLine.intersection.grabPoint.y};
-	console.log(dragVector);
-    
-	//scale the drag vector by the relative distance to the endpoint
+
 	var domain = Math.abs(editLine.line.data[0].x - editLine.line.data[1].x);
 	var dragFactor = (domain - Math.abs(targetEndpoint.x - editLine.intersection.grabPoint.x)) / (domain);
 	dragVector.x = dragVector.x / dragFactor;
 	dragVector.y = dragVector.y / dragFactor;
-	console.log(dragVector);
-    
+
 	//move the target endpoint by the dragVector
 	targetEndpoint.x += dragVector.x;
 	targetEndpoint.y += dragVector.y;
@@ -743,46 +637,7 @@ function intersectsLine(point, line) {
 		}
 	}
 	return {intersects: false, grabPoint: point};
-
-    
-	/*
-    //deterine if the point is within a small rectangle around the endpoints of the line (2% of the scale in each dimension)
-    var marginPercent = 0.02;
-    var xmargin = Math.abs(window.scatterChart.scales['x-axis-0'].max - window.scatterChart.scales['x-axis-0'].min)*marginPercent;
-    var ymargin = Math.abs(window.scatterChart.scales['y-axis-0'].max - window.scatterChart.scales['y-axis-0'].min)*marginPercent;
-
-    //test if the point is on the wrong side of any of the margins
-    for (var endpoint = 0; endpoint <= 1; endpoint++){
-        var intersects = true;
-        if (line[endpoint].y + ymargin < point.y) {intersects = false; }
-        else if (line[endpoint].y - ymargin > point.y) {intersects = false;}
-        else if (line[endpoint].x + xmargin < point.x) {intersects = false;}
-        else if (line[endpoint].x - xmargin > point.x) {intersects = false;}
-        if (intersects == true) {break;}
-    }
-    console.log(intersects);
-    return {intersects: intersects, endpoint: endpoint};
-    */
 }
-
-//click event handler
-//adapted from: https://stackoverflow.com/questions/44959490/chart-js-2-0-current-mouse-coordinates-tooltip
-//function clickEvt(c, i) {
-
-//console.log("coord: (" + c.offsetX + ", " + c.offsetY + ")");
-//console.log(window.scatterChart);
-//console.log(pixel2Point(c.offsetX, c.offsetY));
-//var x_value = this.data.labels[e._index];
-//var y_value = this.data.datasets[0].data[e._index];
-//console.log(x_value);
-//console.log(y_value);
-//}
-
-//mouse move event handler
-//function hoverEvt(c, i) {
-//console.log("coord: (" + c.offsetX + ", " + c.offsetY + ")");
-
-//}
 
 //convert a pixel coordinate on the graph to a point coordinate in the graph's scale
 function pixel2Point(xPixel, yPixel) {
@@ -806,18 +661,6 @@ function pixel2Point(xPixel, yPixel) {
 	}
     
 }
-
-//convert a point on the graph to a pixel location
-/* depreciated
-function point2Pixel(xUnit, yUnit) {
-    var pixelPoint = {
-        xPixel: Math.ceil((xUnit - xMin)*xUnit2Pixel + xPixelBuffer),
-        yPixel: Math.ceil((yMax - yUnit)*yUnit2Pixel + yPixelBuffer)
-    };
-    // Return it
-    return pixelPoint;
-
-}*/
 
 function countSigFigs(n) {
 	n = String(n);
@@ -882,8 +725,7 @@ function updateLabels(closeAfterApply) {
 	scaleData.yMin = document.getElementById("newVmin").value;
 	scaleData.yMax = document.getElementById("newVmax").value;
 	scaleData.yStep = document.getElementById("newVstep").value;
-	console.log(scaleData);
-    
+
 	// Redraw and feedback generation are batched in one frame.
 	window.scheduleGraphAndFeedbackUpdate();
 	//close the modal window

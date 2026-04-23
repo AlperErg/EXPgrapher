@@ -33,7 +33,7 @@ function evaluate() {
 			var x = window.toNumber(dataRow[xData]);
 			var y = window.toNumber(dataRow[yData]);
 		} 
-		if (dataRow[xUnc] == null) {dx=window.toNumber("0"); console.log(dx);} else {var dx = window.toNumber(dataRow[xUnc]);}
+		if (dataRow[xUnc] == null) {dx=window.toNumber("0");} else {var dx = window.toNumber(dataRow[xUnc]);}
 		if (dataRow[yUnc] == null) {dy=window.toNumber("0");} else {var dy = window.toNumber(dataRow[yUnc]);}
             
 		dataCount++;
@@ -407,56 +407,6 @@ function evaluate() {
 	if (xerrorCount > 0) {
 		feedback.push({severity: severity, msg: msg});
 	}     
-	//Check if the y error bars are too big
-	//EDIT: Disabling this check because it catches on cases where the data levels out or is otherwise non-linear
-	/*    var msg = "Some uncertainties on the dependent variable are so large that they cross over adjacent data. Consider ways to reduce the measurement uncertainty or increase the separation of the values you collect for your dependent variable: ";
-    var yerrorCount = 0;
-    var severity = 20;
-    for (var row = 0; row < dataset.length-1; row++) {
-        for (var row2 = row+1; row2 < dataset.length; row2++) {
-            var error = false;
-
-            var point1 = dataset[row].y.operand * Math.pow(dataset[row].y.base, dataset[row].y.power);
-            var point1unc = dataset[row].dy.operand * Math.pow(dataset[row].dy.base, dataset[row].dy.power);
-            var min1 = point1 - point1unc;
-            var max1 = point1 + point1unc;
-
-            var point2 = dataset[row2].y.operand * Math.pow(dataset[row2].y.base, dataset[row2].y.power);
-            var point2unc = dataset[row2].dy.operand * Math.pow(dataset[row2].dy.base, dataset[row2].dy.power);
-            var min2 = point2 - point2unc;
-            var max2 = point2 + point2unc;
-
-            if ((min1 < max2) != (max1 < min2)) {
-                if (((min1 < point2) != (max1 < point2))){
-                    //the data overlap with adjacent error bars!
-                    severity = 80;
-                    error = true;
-                    yerrorCount++;
-                    msg += " measurement " + dataset[row2].lity + " lies within measurement " + dataset[row].lity + "'s uncertainty"; 
-                } else if ((min2 < point1) != (max2 < point1)) {
-                    //the data overlap with adjacent error bars!
-                    severity = 80;
-                    error = true;
-                    yerrorCount++;
-                    msg += " measurement " + dataset[row].lity + " lies within measurement " + dataset[row2].lity + "'s uncertainty"; 
-                } else {
-                    //the error bars overlap
-                    error = true;
-                    yerrorCount++;
-                    msg += " measurement " + dataset[row].lity + "'s uncertainty overlaps with  measurement " + dataset[row2].lity + "'s uncertainty"; 
-                }
-            }
-
-            if  (error == true) {
-                msg += " for the data: (" + dataset[row].lity + " +/- " + dataset[row].litdy + ", " + dataset[row].lity + " +/- " + dataset[row].litdy + ")"; 
-                msg += " and (" + dataset[row2].lity + " +/- " + dataset[row2].litdy + ", " + dataset[row2].lity + " +/- " + dataset[row2].litdy + ")"; 
-            }
-        }
-    } 
-    if (yerrorCount > 0) {
-        feedback.push({severity: severity, msg: msg});
-    } */
-
 	//check that the dependent variable list is in consistent order (ascending or descending)
 	if (dataset.length > 2) {
 		var error = false;
@@ -523,8 +473,7 @@ function evaluate() {
 
 
 
-	//TODO:
-	//test whether the data is curved
+	//TODO: test whether the data is curved
 
     
 	//look for blank lines in the table
@@ -582,15 +531,6 @@ function evaluate() {
 
 }
     
-function modeAndOutliers(list) {
-	var mode = modeFind(list);
-	var outliers = [];
-	for (var listi = 0; listi < list.length; listi++) {
-		if (list[listi] != mode) { outliers.push(listi);}
-	}
-	return {mode: mode, outliers: outliers};
-}
-
 function modeFind(list) {
 	var safelist = JSON.parse(JSON.stringify(list));
 	return safelist.sort((a,b) =>

@@ -1,24 +1,30 @@
 function copyTable() {
-	var text = "";
+	var rows = [];
+	var sourceRows = Array.isArray(window.dataset) ? window.dataset : [];
 
-	//TODO don't copy the uncertainty columns if all the entries are 0 or null
+	for (var copyRow = 0; copyRow < sourceRows.length; copyRow++) {
+		var row = sourceRows[copyRow];
+		if (!row) {
+			continue;
+		}
 
-	//get the header names
-	text += String(window.grid.getColumns()[0]["name"] + "\t");
-	text += String(window.grid.getColumns()[1]["name"] + "\t");
-	text += String(window.grid.getColumns()[2]["name"] + "\t");
-	text += String(window.grid.getColumns()[3]["name"] + "\n");
+		var values = [row.litx, row.litdx, row.lity, row.litdy];
+		for (var i = 0; i < values.length; i++) {
+			if (values[i] == null) {
+				values[i] = "";
+			} else {
+				values[i] = String(values[i]);
+			}
+		}
 
-	//add the data
-	for (var copyRow = 0; copyRow < window.dataset.length; copyRow++) {
-		text += String(window.dataset[copyRow].litx + "\t");
-		text += String(window.dataset[copyRow].litdx + "\t");
-		text += String(window.dataset[copyRow].lity + "\t");
-		text += String(window.dataset[copyRow].litdy);
-		if (copyRow < window.dataset.length - 1) { text += "\n";}
+		if ((values[0] + values[1] + values[2] + values[3]).trim() === "") {
+			continue;
+		}
+
+		rows.push(values.join("\t"));
 	}
 
-	copyToClipboard(text);
+	copyToClipboard(rows.join("\n"));
 	popupSnackbar("Table Copied!");
 }
 
@@ -64,7 +70,6 @@ function copyDoc() {
 		//add the trendlines:
 		for (var lineOrder = 1; lineOrder <= 3; lineOrder++) {
 			var line = window.allData[lineOrder];//allData[1] is the trendline, 2 and 3 are the max and min lines
-			console.log(line);
 			url.searchParams.append("line"+lineOrder+"data0x", line.data[0].x);
 			url.searchParams.append("line"+lineOrder+"data0y", line.data[0].y);
 			url.searchParams.append("line"+lineOrder+"data1x", line.data[1].x);
