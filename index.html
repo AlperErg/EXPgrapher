@@ -19,6 +19,9 @@
      <link rel="stylesheet" href="graph.css" type="text/css"/>
      <link rel="stylesheet" href="feedback.css" type="text/css"/>
    <link rel="stylesheet" href="index.css" type="text/css"/>
+    <!-- Umami: cookieless analytics, no consent banner needed.
+         Proxied through the Cloudflare Worker in personal-website/analytics-proxy so ad blockers don't drop it. -->
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="a075146a-10ed-4c6a-93a1-c75d4cec578e"></script>
  </head>
 
   <body>
@@ -61,19 +64,19 @@
             <i class="bi bi-arrow-clockwise"></i>
           </button>
           <!--copy graph as png-->
-          <button type="button" class="btn btn-outline-light btn-circle" onclick="saveGraph()">
+          <button type="button" class="btn btn-outline-light btn-circle" onclick="saveGraph()" data-umami-event="Download graph">
             <i class="bi bi-download"></i>
           </button>
           <!--copy link-->
-          <button type="button" class="btn btn-outline-light btn-circle" id="linkShareButton" onclick="shareContent()">
+          <button type="button" class="btn btn-outline-light btn-circle" id="linkShareButton" onclick="shareContent()" data-umami-event="Share link">
             <i class="bi bi-share-fill"></i>
           </button>
           <!--Apple Web Share-->
-          <button type="button" class="btn btn-outline-light btn-circle" id="appleShareButton" onclick="shareContent()">
+          <button type="button" class="btn btn-outline-light btn-circle" id="appleShareButton" onclick="shareContent()" data-umami-event="Share native">
             <i class="bi bi-box-arrow-up"></i>
           </button>
           <!--Graph Settings-->
-          <button type="button" class="btn btn-outline-light btn-circle" onclick="openGraphSettingsModal()">
+          <button type="button" class="btn btn-outline-light btn-circle" onclick="openGraphSettingsModal()" data-umami-event="Open graph settings">
             <i class="bi bi-gear-fill"></i>
           </button>
         </ul>
@@ -113,7 +116,7 @@
       </div>
       <div class="footer-license">
         <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/">
-          <a property="dct:title" rel="cc:attributionURL" href="http://graph.ergune.dev">EXPgrapher</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://github.com/AlperErg">Alper Erg&uuml;ne</a> is licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" class="cc-badge">CC BY-NC-SA 4.0<img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" alt="CC"><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt="BY"><img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1" alt="NC"><img src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" alt="SA"></a>
+          <a property="dct:title" rel="cc:attributionURL" href="http://graph.ergune.dev">EXPgrapher</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://github.com/AlperErg" data-umami-event="Footer: Name">Alper Erg&uuml;ne</a> is licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" class="cc-badge">CC BY-NC-SA 4.0<img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" alt="CC"><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt="BY"><img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1" alt="NC"><img src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" alt="SA"></a>
         </p>
       </div>
     </footer>
